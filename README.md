@@ -46,16 +46,16 @@ Backenden skall byggas i AWS med serverlessteknik. API:et skall säkras med en _
 
 #### Must have
 
-- Som _kund_ vill jag få en fin upplevelese av YYGS-sidan via min telefon.
-- Som _kund_ vill jag kunna se en meny för att inspiereras och kunna välja vad jag vill äta.
-- Som _kund_ vill jag enkelt kunna klicka ihop en beställning
-- Som _kund_ vill jag kunna kunna ändra min beställning innan jag skickar iväg den för jag är lite velig
-- Som _personal_ vill jag kunna se beställningarna tydligt för att veta vad vi ska tillbereda
-- Som _personal_ vill jag ha beställningarna sorterade på tid ( äldst > nyast ) för att veta i vilken ordning dom skall tillberedas
-- Som _personal_ vill jag kunna markera när en beställning är redo att serveras för att meddela kunden att hämta den i luckan
-- Som _kund_ vill jag få en notis av något slag för att veta när min beställning är redo för avhämtning
-- Som _kund_ vill jag göra mina beställningar via telefonen då jag sällan har datorn med mig på lunchen
-- Som _personal_ vill jag kunna se beställningarna via en ipad i köket
+- Som _kund_ vill jag få en fin upplevelese av YYGS-sidan via min telefon. KLAR
+- Som _kund_ vill jag kunna se en meny för att inspiereras och kunna välja vad jag vill äta. KLAR
+- Som _kund_ vill jag enkelt kunna klicka ihop en beställning. KLAR
+- Som _kund_ vill jag kunna kunna ändra min beställning innan jag skickar iväg den för jag är lite velig. KLAR
+- Som _personal_ vill jag kunna se beställningarna tydligt för att veta vad vi ska tillbereda. KLAR
+- Som _personal_ vill jag ha beställningarna sorterade på tid ( äldst > nyast ) för att veta i vilken ordning dom skall tillberedas. KLAR
+- Som _personal_ vill jag kunna markera när en beställning är redo att serveras för att meddela kunden att hämta den i luckan. KLAR
+- Som _kund_ vill jag få en notis av något slag för att veta när min beställning är redo för avhämtning. KLAR
+- Som _kund_ vill jag göra mina beställningar via telefonen då jag sällan har datorn med mig på lunchen. KLAR
+- Som _personal_ vill jag kunna se beställningarna via en ipad i köket. KLAR
 
 #### Nice to have
 
