@@ -1,0 +1,62 @@
+service: backend
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  profile: ${env:PROFILE}
+  region: eu-north-1
+  iam:
+    role: ${env:LAMBDA_ROLE}
+  deploymentMethod: direct
+
+useDotenv: true  
+
+plugins:
+  - serverless-webpack
+
+package:
+  individually: true
+
+functions:
+  getMenu:
+    handler: functions/getMenu/index.handler
+    events:
+      - httpApi:
+          path: '/api/menu'
+          method: GET
+  
+  postMenu:
+    handler: functions/postMenu/index.handler
+    events:
+      - httpApi:
+          path: '/api/menu'
+          method: POST        
+
+  
+
+resources:
+  Resources:
+    menuDb:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: menu-db
+        AttributeDefinitions:
+          - AttributeName: menuId
+            AttributeType: S
+        KeySchema:
+          - AttributeName: menuId
+            KeyType: HASH
+        BillingMode: PAY_PER_REQUEST
+    
+    ordersDb:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: orders-db
+        AttributeDefinitions:
+          - AttributeName: orderId
+            AttributeType: S
+        KeySchema:
+          - AttributeName: orderId
+            KeyType: HASH
+        BillingMode: PAY_PER_REQUEST
