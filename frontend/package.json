@@ -1,6 +1,6 @@
 {
-  "name": "boilerplate",
-  "description": "Boilerplate code for Zocom LIA Bootcamp.",
+  "name": "frontend",
+  "description": "frontend project for Zocom LIA Bootcamp.",
   "private": true,
   "version": "0.0.0",
   "type": "module",
