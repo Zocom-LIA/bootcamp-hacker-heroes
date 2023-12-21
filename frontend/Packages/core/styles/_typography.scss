@@ -4,9 +4,20 @@
     --font-family: 'Fira Sans', sans-serif;
 }
 
-$base-font-size: 32px;
+$base: 16px;
 
-/*@mixin font-size($sizeValue: 1) {
-    font-size: $base-font-size * $sizeValue;
+@mixin fontsizeLarge {
+    font-size: calc($base * 1.6);
+    line-height: 120%;
 }
-*/
+
+@mixin fontsizeRegular {
+    font-size: $base;
+    line-height: 140%;
+}
+
+@mixin fontsizeSmall {
+    font-size: calc($base * .8);
+    line-height: 120%;
+}
+

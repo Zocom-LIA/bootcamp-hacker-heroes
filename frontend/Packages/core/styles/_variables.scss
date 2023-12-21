@@ -11,12 +11,50 @@ $coal:   #353131;
 $shade-24-light:  #F1F0EC 24%;
 $shade-24-dark :#353131 24%;
 
-/*App's Color Variables  */
-$color-background-landingpage: $mint;
-$color-background-menu: $clay;
-$color-background-button:$coal; 
+/* Background Colors  */
+$color-background-primary: $clay;
+$color-background-secondery: $coal;
+$color-background-tertiary: $ash;
+$color-background-button-primary:$coal; 
+$color-background-button-alert:$alert; 
+$color-background-button-success:$dark-mint; 
+
+/* Border Colors  */
+$color-border-button:$snow;
 
 
+/*Text Colors*/
+$color-text-primary: $snow;
+$color-text-secondery: $coal;
+$color-text-tertiary: $clay;
 
-$radius-1:4px;
 
+/* EFFECTS */
+$radius-tier-1: 8px;
+$radius-tier-2: 4px;
+$radius-tier-3: 2px;
+
+/* RESPONSIVE */
+$mobileBreakpoint: 480px;
+$tabletBreakpoint: 640px;
+
+/* MARGINS, PADDINGS, GAPS */
+
+$baseline: 16px;
+
+$padding-huge: calc($baseline * 2);
+$padding-large: calc($baseline * 1.5);
+$padding: $baseline;
+$padding-sml: calc($baseline / 2);
+$padding-nano: calc($baseline / 4);
+
+$margin-huge: calc($baseline * 2);
+$margin-large: calc($baseline * 1.5);
+$margin: $baseline;
+$margin-sml: calc($baseline / 2);
+$margin-nano: calc($baseline / 4);
+
+$gap-large: calc($baseline * 1.5);
+$gap: $baseline;
+$gap-sml: calc($baseline / 2);
+$gap-nano: calc($baseline / 4);
