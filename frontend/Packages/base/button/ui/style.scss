@@ -1,0 +1,35 @@
+@use '@zocom/styles' as *;
+
+
+@mixin regularBase {
+    font-weight: 700;
+    font-size: $base-font-size;
+    background-color: $color-background-button;
+
+    &:hover {
+        filter: brightness(.95);
+    }
+
+    &:active {
+        filter: brightness(1.05);
+    }
+}
+
+button {
+    border-radius: $radius-1;
+
+    &.button {
+        &__regular {
+            &--default {
+                @include regularBase();
+            }
+        }
+        
+        &__stretch {            
+            &--default {
+                width: 100%;
+                @include regularBase();
+            }
+        }
+    }
+}
