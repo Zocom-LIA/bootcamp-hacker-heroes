@@ -40,7 +40,7 @@ resources:
     menuDb:
       Type: AWS::DynamoDB::Table
       Properties:
-        TableName: menu-db
+        TableName: menu_table
         AttributeDefinitions:
           - AttributeName: menuId
             AttributeType: S
@@ -52,7 +52,7 @@ resources:
     ordersDb:
       Type: AWS::DynamoDB::Table
       Properties:
-        TableName: orders-db
+        TableName: orders_table
         AttributeDefinitions:
           - AttributeName: orderId
             AttributeType: S
