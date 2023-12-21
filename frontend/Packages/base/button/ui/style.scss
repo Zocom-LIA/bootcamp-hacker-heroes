@@ -3,9 +3,8 @@
 
 @mixin regularBase {
     font-weight: 700;
-    background-color: $color-background-button;
-    color: $color-background-landingpage;
     font-size: $base-font-size;
+    background-color: $color-background-button;
 
     &:hover {
         filter: brightness(.95);
