@@ -1,4 +1,4 @@
-import { sendResponse } from '../../responses';
+import { sendResponse } from '../../responses/index';
 
 
 exports.handler = async () => {
