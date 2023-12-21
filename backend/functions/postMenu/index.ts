@@ -41,14 +41,10 @@ exports.handler = async (event) => {
 
     try {
         const requestBody = JSON.parse(event.body);
-        const newMenu: Menu = {
-            menuId: requestBody.menuId,
-            wontons: requestBody.wontons,
-        };
-        console.log(newMenu);
-        return postMenu(newMenu);
+        console.log(requestBody);
+        return postMenu(requestBody);
     } catch (error) {
-        console.error('Error parsing request or constructing Menu:', error);
+        console.error('Error parsing request', error);
         return sendResponse(400, { success: false, error: 'Bad request' });
     }
 }
