@@ -1,0 +1,7 @@
+@use "@zocom/styles" as * ;
+
+
+.menu_item{
+    height: 50px;
+    border-bottom: 1px dashed $shade-24-light;
+}
