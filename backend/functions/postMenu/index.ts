@@ -1,9 +1,6 @@
 import { sendResponse } from '../../responses/index';
 import {db} from '../../services/index'
 
-// export const menu_db: string = "menu_table";
-
-
 export interface Menu {
     menuId: string;
     wontons: Wontons[];
@@ -33,18 +30,11 @@ async function postMenu(menu: Menu) {
 }
 
 exports.handler = async (event) => {
-    console.log("Hello");
-    console.log(event.body);
-    // const MenuItems = JSON.parse(event.body);
-    // console.log(MenuItems);
-    // return postMenu(event.body);
-
     try {
         const requestBody = JSON.parse(event.body);
-        console.log(requestBody);
         return postMenu(requestBody);
     } catch (error) {
-        console.error('Error parsing request', error);
+        console.error('Error json parse', error);
         return sendResponse(400, { success: false, error: 'Bad request' });
     }
 }
