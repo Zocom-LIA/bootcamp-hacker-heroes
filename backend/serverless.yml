@@ -32,8 +32,15 @@ functions:
       - httpApi:
           path: '/api/menu'
           method: POST        
+  getOrder:
+    handler: functions/getOrder/index.handler
+    events:
+      - httpApi:
+          path: '/api/orders'
+          method: GET
+  environment:
+    ORDER_TABLE: !Ref ordersDb    
 
-  
 
 resources:
   Resources:
