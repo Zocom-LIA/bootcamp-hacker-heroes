@@ -14,5 +14,10 @@
     "serverless-webpack": "^5.13.0",
     "ts-loader": "^9.5.1",
     "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "@middy/core": "^5.2.1",
+    "aws-sdk": "^2.1528.0",
+    "joi": "^17.11.0"
   }
 }
