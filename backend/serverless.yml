@@ -37,26 +37,19 @@ functions:
 
 resources:
   Resources:
-    menuDb:
+    YumYum:
       Type: AWS::DynamoDB::Table
       Properties:
-        TableName: menu_table
+        TableName: YumYumDB
         AttributeDefinitions:
-          - AttributeName: menuId
+          - AttributeName: PK
             AttributeType: S
+          - AttributeName: SK
+            AttributeType: S  
         KeySchema:
-          - AttributeName: menuId
+          - AttributeName: PK
             KeyType: HASH
+          - AttributeName: SK
+            KeyType: RANGE
         BillingMode: PAY_PER_REQUEST
-    
-    ordersDb:
-      Type: AWS::DynamoDB::Table
-      Properties:
-        TableName: orders_table
-        AttributeDefinitions:
-          - AttributeName: orderId
-            AttributeType: S
-        KeySchema:
-          - AttributeName: orderId
-            KeyType: HASH
-        BillingMode: PAY_PER_REQUEST
+

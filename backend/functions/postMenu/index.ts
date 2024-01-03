@@ -4,16 +4,6 @@ import middy from '../../node_modules/@middy/core';
 import Joi from 'joi';
 import { APIGatewayProxyEventV2, APIGatewayProxyStructuredResultV2 } from 'aws-lambda';
 
-//varje recept som egen item i DB
-//typa up lambdaeventet, APIGatewayProxyEventV2 representerar httpapi 
-//då vi använder http api så behövs ej json bodyparse.
-//yml IamRoleStatements för smidigare role management något att kolla på senare
-//env tablenames
-//primary key sort key
-
-//tomorrow rewrite schema using joi, use the code in discord. Fixa simpel get function
-//behöver dela up i packages
-
 export function validateSchema(schema) {
   return {
     before: async (request) => {
@@ -29,7 +19,7 @@ export function validateSchema(schema) {
 async function postMenu(menu) {
    try {
     const params = {
-        TableName: "menu_table",
+        TableName: "YumYumDB",
         Item: menu
     }
     await db.put(params).promise();
@@ -51,13 +41,15 @@ const handlerFunction = async (event: APIGatewayProxyEventV2): Promise<APIGatewa
 }
 
 export const menuSchema = Joi.object({
-  menuId: Joi.string().min(3).max(30).required(),
-  category: Joi.string().min(3).max(20).required(),
+  PK: Joi.string().min(3).max(30).required(),
+  SK: Joi.string().min(3).max(50).required(),
+  name: Joi.string().min(3).max(20).required(),
   desc: Joi.string().min(3).max(200).optional(),
   ingredients: Joi.array().items(Joi.string()).optional(),
   price: Joi.number().min(3).max(1000).required(),
 });
-
+//Format for now is menu#fullmenu for pk, 
+//sk will be either wontons#food or dip#sauce
 
 exports.handler = middy()
 .use (validateSchema(menuSchema))
