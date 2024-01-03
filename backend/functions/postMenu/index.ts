@@ -4,6 +4,15 @@ import middy from '../../node_modules/@middy/core';
 import Joi from 'joi';
 import { APIGatewayProxyEventV2, APIGatewayProxyStructuredResultV2 } from 'aws-lambda';
 
+type MenuType = {
+  PK: string | number,
+  SK: string,
+  name: string,
+  desc: string,
+  ingredients: string[],
+  price: number
+}
+
 export function validateSchema(schema) {
   return {
     before: async (request) => {
@@ -16,7 +25,7 @@ export function validateSchema(schema) {
   };
 }
 
-async function postMenu(menu) {
+async function postMenu(menu: MenuType) {
    try {
     const params = {
         TableName: "YumYumDB",
@@ -48,6 +57,7 @@ export const menuSchema = Joi.object({
   ingredients: Joi.array().items(Joi.string()).optional(),
   price: Joi.number().min(3).max(1000).required(),
 });
+
 //Format for now is menu#fullmenu for pk, 
 //sk will be either wontons#food or dip#sauce
 
