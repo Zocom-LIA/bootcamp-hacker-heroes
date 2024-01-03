@@ -4,12 +4,12 @@ import { APIGatewayProxyEventV2, APIGatewayProxyStructuredResultV2 } from 'aws-l
 
 
 async function getMenuItems(path) {
+    if (path == ""){
     const params = {
         TableName: "YumYumDB",
-        KeyConditionExpression: "PK = :pkVal AND begins_with (SK, :skVal)",
+        KeyConditionExpression: "PK = :pkVal",
         ExpressionAttributeValues: {
-            ":pkVal": "Meny",
-            ":skVal": path
+            ":pkVal": "Meny"
         }
     }
     try {
@@ -22,13 +22,34 @@ async function getMenuItems(path) {
         console.error("Error querying DynamoDB:", error);
         throw error;
     }
+    }
+    else{
+        const params = {
+            TableName: "YumYumDB",
+            KeyConditionExpression: "PK = :pkVal AND begins_with (SK, :skVal)",
+            ExpressionAttributeValues: {
+                ":pkVal": "Meny",
+                ":skVal": path
+            }
+        }
+        try {
+            const result = await db.query(params).promise();
+            if (result.Count == 0){
+                return sendResponse(400, {success: false, error: "No items found"})
+            }
+            return result;
+        } catch (error) {
+            console.error("Error querying DynamoDB:", error);
+            throw error;
+        }
+    }
 }
 
 exports.handler = async (event: APIGatewayProxyEventV2): Promise<APIGatewayProxyStructuredResultV2> => {
-    const path = event.queryStringParameters;
+    const path = event.pathParameters.search;
     try {
-        console.log(path.wonton)
-        return getMenuItems(path.wonton);
+        console.log(path);
+        return getMenuItems(path);
     } catch (error) {
         return sendResponse(400, { success: false, error: "Bad request" });
     }

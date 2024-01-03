@@ -23,7 +23,7 @@ functions:
     handler: functions/getMenu/index.handler
     events:
       - httpApi:
-          path: '/api/menu'
+          path: '/api/menu/{search}'
           method: GET
   
   postMenu:
