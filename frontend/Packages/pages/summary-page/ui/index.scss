@@ -1,14 +1,12 @@
 @use '@zocom/styles' as *;
 
+body {
+    background-color: $color-background-page;
+    font-size: medium;
+}
 
-header {
+.item {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: $gap;
-}
-
-img {
-    height: $base * 4;
-    width: auto;
 }
