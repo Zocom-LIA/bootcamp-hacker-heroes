@@ -1,6 +1,9 @@
 @use '@zocom/styles' as *;
 
-
+.landingPage{
+    padding: $padding;
+    
+}
 
 .menu_container {
     background-color: $color-background-primary;
