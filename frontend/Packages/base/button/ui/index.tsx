@@ -20,8 +20,9 @@ type ButtonProps = {
 }
 
 
+
 export const Button = ({ type = ButtonType.REGULAR, style = StyleTypes.DEFAULT, children, onClick }: ButtonProps) => {
     return (
     <button className={`button__${type}--${style}`} onClick={() => onClick()}>{children}</button>)
-    
+ 
 }

@@ -1,18 +1,23 @@
-@import url('https://fonts.googleapis.com/css?family=Fira Sans');
-
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@200;400;600;700&display=swap');
 :root {
     --font-family: 'Fira Sans', sans-serif;
 }
-
 $base: 16px;
+
+@function textShadow() {
+    $px: calc($base * 0.1);
+    @return  $px  $px $px rgba(0, 0, 0, 0.4);
+}
 
 @mixin fontsizeXLarge {
     font-size: calc($base * 2); // 32px
+    font-weight: 700;
     line-height: 120%;
 }
 
 @mixin fontsizeLarge {
     font-size: calc($base * 1.5); // 24px
+    font-weight: 600;
     line-height: 120%;
 }
 
