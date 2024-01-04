@@ -1,19 +1,17 @@
 import { APIGatewayProxyHandler } from 'aws-lambda';
-import middy from '@middy/core';
-import httpErrorHandler from '@middy/http-error-handler';
-import httpJsonBodyParser from '@middy/http-json-body-parser';
+import middy from '../../node_modules/@middy/core';
+import httpErrorHandler from '../../node_modules/@middy/http-error-handler';
+import httpJsonBodyParser from '../../node_modules/@middy/http-json-body-parser';
 import * as AWS from 'aws-sdk';
+import {db} from '../../services/index';
 
-const dynamoDb = new AWS.DynamoDB.DocumentClient();
-
-const tableName = process.env.ORDER_TABLE;
 
 const getOrderHandler: APIGatewayProxyHandler = async () => {
   const params: AWS.DynamoDB.DocumentClient.ScanInput = {
-    TableName: tableName,
+    TableName: "YumYumDB",
   };
 
-  const result = await dynamoDb.scan(params).promise();
+  const result = await db.scan(params).promise();
 
   return {
     statusCode: 200,

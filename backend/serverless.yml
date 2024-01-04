@@ -37,9 +37,7 @@ functions:
     events:
       - httpApi:
           path: '/api/orders'
-          method: GET
-  environment:
-    ORDER_TABLE: !Ref ordersDb    
+          method: GET 
 
 
 resources:
