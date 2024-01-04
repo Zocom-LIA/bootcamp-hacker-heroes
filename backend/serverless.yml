@@ -23,7 +23,7 @@ functions:
     handler: functions/getMenu/index.handler
     events:
       - httpApi:
-          path: '/api/menu'
+          path: '/api/menu/{search}'
           method: GET
   
   postMenu:
@@ -44,26 +44,19 @@ functions:
 
 resources:
   Resources:
-    menuDb:
+    YumYum:
       Type: AWS::DynamoDB::Table
       Properties:
-        TableName: menu-db
+        TableName: YumYumDB
         AttributeDefinitions:
-          - AttributeName: menuId
+          - AttributeName: PK
             AttributeType: S
+          - AttributeName: SK
+            AttributeType: S  
         KeySchema:
-          - AttributeName: menuId
+          - AttributeName: PK
             KeyType: HASH
+          - AttributeName: SK
+            KeyType: RANGE
         BillingMode: PAY_PER_REQUEST
-    
-    ordersDb:
-      Type: AWS::DynamoDB::Table
-      Properties:
-        TableName: orders-db
-        AttributeDefinitions:
-          - AttributeName: orderId
-            AttributeType: S
-        KeySchema:
-          - AttributeName: orderId
-            KeyType: HASH
-        BillingMode: PAY_PER_REQUEST
+
