@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css?family=Fira Sans');
+
+:root {
+    --font-family: 'Fira Sans', sans-serif;
+}
+
+$base: 16px;
+
+@mixin fontsizeXLarge {
+    font-size: calc($base * 2); // 32px
+    line-height: 120%;
+}
+
+@mixin fontsizeLarge {
+    font-size: calc($base * 1.5); // 24px
+    line-height: 120%;
+}
+
+@mixin fontsizeRegular {
+    font-size: $base; // 16px
+    line-height: 140%;
+}
+
+@mixin fontsizeSmall {
+    font-size: calc($base * .89); // 14px
+    line-height: 120%;
+}
+
+@mixin fontsizeTiny {
+    font-size: calc($base * .8); // 12px
+    line-height: 120%;
+}
+
