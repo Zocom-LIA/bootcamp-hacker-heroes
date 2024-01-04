@@ -1,7 +1,17 @@
-@use "@zocom/styles" as * ;
+@use '@zocom/styles' as *;
 
 
-.menu_item{
-    height: 50px;
-    border-bottom: 1px dashed $shade-24-light;
+
+.menu_container {
+    background-color: $color-background-primary;
+    color: $color-text-primary; 
+    font-family:var(--font-family);
+    height: 100%;
+    padding: $padding;
+}
+
+.menu_title {
+    @include fontsizeXLarge;
+    text-shadow: textShadow(); 
+    padding: $padding 0;
 }
