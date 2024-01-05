@@ -1,0 +1,8 @@
+@use '_variables' as _variables  ; 
+
+#root,
+.App {
+    //svh means screen viewport height
+    height: 100svh; // 100vh is not supported in IE11
+}
+
