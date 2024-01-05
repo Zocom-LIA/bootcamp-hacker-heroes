@@ -1,6 +1,5 @@
 import './style.scss';
 import { ReactNode } from 'react';
-import React from 'react';
 import { StyleTypes } from '@zocom/types';
 
 
@@ -23,6 +22,6 @@ type ButtonProps = {
 
 export const Button = ({ type = ButtonType.REGULAR, style = StyleTypes.DEFAULT, children, onClick }: ButtonProps) => {
     return (
-    <button className={`button__${type}--${style}`} onClick={() => onClick()}>{children}</button>)
- 
+    <button className={`button__${type}--${style}`} onClick={() => onClick()}>{children}</button>
+    )
 }

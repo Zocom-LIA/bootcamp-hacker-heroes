@@ -3,8 +3,8 @@
 
 @mixin regularBase {
     font-weight: 700;
-    font-size: $base-font-size;
-    background-color: $color-background-button;
+    @include fontsizeRegular();
+    background-color: $color-background-button-primary;
 
     &:hover {
         filter: brightness(.95);
@@ -16,7 +16,7 @@
 }
 
 button {
-    border-radius: $radius-1;
+    border-radius: $radius-tier-2;
 
     &.button {
         &__regular {
