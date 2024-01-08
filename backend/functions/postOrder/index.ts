@@ -15,10 +15,10 @@ type OrderType = {
   SK: string,
   orderName: string,
   customerName: string,
-  desc: string,
   price: number,
   orderId: string,
-  status: string
+  status: string,
+  time: string
 }
 
 export function validateSchema(schema) {
@@ -64,9 +64,12 @@ export const OrderSchema = Joi.object({
   customerName: Joi.string().min(3).max(200).required(),
   price: Joi.number().min(3).max(1000).required(),
   orderId: Joi.string().min(3).max(200).required(),
-  status: Joi.string().min(3).max(200).required()
+  status: Joi.string().min(3).max(200).required(),
+  time: Joi.string().min(3).max(200).required()
 });
 
+//fråga om hur sidan för ipad vy ska  uppdateras, webbsockets? realtime updates.
+//30 sec uppdateringar? 
 
 exports.handler = middy()
 .use (validateSchema(OrderSchema))
