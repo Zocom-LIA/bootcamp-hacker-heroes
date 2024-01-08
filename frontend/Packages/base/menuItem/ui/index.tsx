@@ -27,30 +27,31 @@ export const MenuItem:FC<MenuItemProps> = ({name, desc, ingredients, price,isDip
   const ingredientsList = ingredients?.map((ingredient,index) => ingredient + (index < ingredients.length - 1 ? ", " : "")) ;
 
   return (
-       <section className="menu_item">
-     <section className="menu_item-header">
-       <h2 className="menu_item-title">{name}</h2>
-       <span className="menu_item-space"></span>
-       <h2 className="menu_item-price">{price} SEK </h2>
-     </section>
-     <section className="menu_item-content">
-     {!isDip ? (
-       <p className="menu_item-description">{ingredientsList}</p>
-       ) : (
-            // Dipsås
-           
-            dip && dip.map((dipItem,index) => (
-              <Button key={index}
-              onClick={()=> console.log(dipItem)}
-              style ={StyleTypes.LIGHT}
-            >  {dipItem.name} </Button>
-            )
-          )
+    <section className="menu_item">
+      <section className="menu_item-header">
+        <h2 className="menu_item-title">{name}</h2>
+        <span className="menu_item-space"></span>
+        <h2 className="menu_item-price">{price} SEK </h2>
+      </section>
+      <section className="menu_item-content">
+        {!isDip ? (
+          <p className="menu_item-description">{ingredientsList}</p>
+        ) : (
+          // Dipsås
 
-       )}
-     </section>
-   </section>
-  
+          dip &&
+          dip.map((dipItem, index) => (
+            <Button
+              key={index}
+              onClick={() => console.log(dipItem)}
+              style={StyleTypes.LIGHT}
+            >
+              {dipItem.name}
+            </Button>
+          ))
+        )}
+      </section>
+    </section>
   );
 };
 
