@@ -6,8 +6,8 @@ provider:
   runtime: nodejs18.x
   profile: ${env:PROFILE}
   region: eu-north-1
-  iam:
-    role: ${env:LAMBDA_ROLE}
+  # iam:
+  #   role: ${env:LAMBDA_ROLE}
   deploymentMethod: direct
 
 useDotenv: true  
