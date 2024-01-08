@@ -1,18 +1,27 @@
 import "./style.scss";
 import { FC } from 'react';
+import {Button} from "@zocom/button";
+import { StyleTypes } from '@zocom/types';
 
-
+type dipItem = {
+    name: string;
+    price: number;
+    desc?: string;
+};
 
  type MenuItemProps = {
     name: string;
     desc?: string;
     ingredients?: string[];
     price: number;
+    isDip?: boolean;
+    dip?: dipItem[];
 };
 
 
 
-export const MenuItem:FC<MenuItemProps> = ({name, desc, ingredients, price} ) => {
+
+export const MenuItem:FC<MenuItemProps> = ({name, desc, ingredients, price,isDip=false,dip} ) => {
 
   //rendering the ingredients as a list separated by comma
   const ingredientsList = ingredients?.map((ingredient,index) => ingredient + (index < ingredients.length - 1 ? ", " : "")) ;
@@ -25,7 +34,22 @@ export const MenuItem:FC<MenuItemProps> = ({name, desc, ingredients, price} ) =>
         <h2 className="menu_item-price">{price} SEK </h2>
       </section>
       <section className="menu_item-content">
-        <p className="menu_item-description">{ingredientsList}</p>
+        {!isDip ? (
+          <p className="menu_item-description">{ingredientsList}</p>
+        ) : (
+          // Dipsås
+
+          dip &&
+          dip.map((dipItem, index) => (
+            <Button
+              key={index}
+              onClick={() => console.log(dipItem)}
+              style={StyleTypes.LIGHT}
+            >
+              {dipItem.name}
+            </Button>
+          ))
+        )}
       </section>
     </section>
   );
