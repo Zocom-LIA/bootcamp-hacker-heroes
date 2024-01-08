@@ -16,9 +16,10 @@ type OrderType = {
   orderName: string,
   customerName: string,
   price: number,
+  orderNr: number,
   orderId: string,
   status: string,
-  time: string
+  eta: string,
 }
 
 export function validateSchema(schema) {
@@ -63,9 +64,10 @@ export const OrderSchema = Joi.object({
   orderName: Joi.string().min(3).max(20).required(),
   customerName: Joi.string().min(3).max(200).required(),
   price: Joi.number().min(3).max(1000).required(),
+  orderNr: Joi.number().min(3).max(1000).required(),
   orderId: Joi.string().min(3).max(200).required(),
   status: Joi.string().min(3).max(200).required(),
-  time: Joi.string().min(3).max(200).required()
+  eta: Joi.string().min(3).max(200).required()
 });
 
 //fråga om hur sidan för ipad vy ska  uppdateras, webbsockets? realtime updates.
