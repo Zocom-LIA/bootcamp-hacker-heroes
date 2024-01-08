@@ -37,4 +37,20 @@ A post call to api/menu. The json structure is the following.
 
 Items are added one by one, so the first setup will be a bit menial, but in the future if the kitchen want to add more recipes they'll be adding them one by one from their own feature. In SK replace wontons for dip if adding a dip, for example dips#bearnaise
 
-SendOrder: currently in design, but preminiralily it will be a structure with a primary key of User#UUID with a sortkey of either order#timestamp or profile. This is so in the future if there is a login feature all the orders will be stored under the users uuid collection.
+SendOrder: 
+The concept is that each order is made by an user whom have their own userId, and then stored under the users collection with order#timestamp
+
+missing features right now are combining price in the backend, will have the userId generated in the backend since no login feature and timestamp made in backwnd as well.
+
+json example
+
+{
+  "PK": "User#82929-929292-929292",
+	"SK": "order#2024-08-08:12343",
+	"orderName": "Karlstad",
+	"customerName": "Henry",
+	"price": 9,
+	"orderId": "XXXXXX-XXXXXX-XXXXXX",
+	"status": "active",
+	"time": "test"
+}

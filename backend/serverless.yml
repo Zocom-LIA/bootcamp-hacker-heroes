@@ -38,7 +38,12 @@ functions:
       - httpApi:
           path: '/api/orders'
           method: GET 
-
+  postOrder:
+    handler: functions/postOrder/index.handler
+    events:
+      - httpApi:
+          path: '/api/orders'
+          method: POST
 
 resources:
   Resources:
