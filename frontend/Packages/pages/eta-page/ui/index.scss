@@ -3,6 +3,7 @@
 .eta-page {
     padding: $padding;
     background-color: $clay;
+    @include column;
 }
 
 .eta-container {
@@ -15,4 +16,20 @@
 .order-status {
     @include fontsizeXLarge;
     text-shadow: textShadow();
+    color: $snow;
+    text-align: center;
+}
+
+.eta-status {
+    @include fontsizeLarge;
+    text-shadow: textShadow();
+    color: $snow;
+    text-align: center;
+}
+
+.order-nr {
+    @include fontsizeRegular;
+    text-shadow: textShadow();
+    color: $ash;
+    text-align: center;
 }
