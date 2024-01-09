@@ -44,7 +44,7 @@ missing features right now are combining price in the backend, will have the use
 
 orderNr är för enkel upphämtning för gäster.
 
-json example
+json example (to be adjusted)
 
 {
   "PK": "User#82929-929292-929292",
