@@ -1,28 +1,45 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { cartItemType } from "@zocom/types" ;
 
 
-//interface CartState is the type of the state managed by the reducer
-interface CartState {
-    items: object[];
-}
-
-//initialState is the initial state of the reducer§
-const initialState: CartState = {
-    items: []
-}
+const initialState: cartItemType[] = [];
 
 const cartSlice = createSlice({
-    name: 'cart',
-    initialState,
-    reducers: {
-        //Payload
-        addToCart(state, action: PayloadAction<object> ) {
-            state.items.push(action.payload)
-        },
-        
+  name: "cart",
+  initialState,
+  reducers: {
+    // add to cart and if item already exists in cart, update quantity
+    addToCart: (state, action: PayloadAction<cartItemType>) => {
+      const itemIndex = state.findIndex(
+        (item) => item.id === action.payload.id
+      );
+
+      if (itemIndex === -1) {
+        state.push(action.payload);
+      } else {
+        state[itemIndex].quantity += action.payload.quantity;
+      }
+
+      state.push(action.payload);
+    },
+
+    // remove from cart
+    removeFromCart: (state, action: PayloadAction<string>) => {
+      return state.filter((item) => item.id !== action.payload);
+    },
+
+    updateQuantity: (state,action: PayloadAction<{ id: string; quantity: number }>) => {
+      const itemIndex = state.findIndex((item) => item.id === action.payload.id);
+      if (itemIndex !== -1) {
+        state[itemIndex].quantity = action.payload.quantity;
+      }
+    },
+
+    clearCart: (state) => {
+        state = [];
     }
-}); 
+  },
+});
 
-
-export const { addToCart } = cartSlice.actions;
+export const { addToCart, removeFromCart, updateQuantity,clearCart } = cartSlice.actions;
 export default cartSlice.reducer;
