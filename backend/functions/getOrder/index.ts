@@ -3,7 +3,7 @@ import middy from '../../node_modules/@middy/core';
 import httpErrorHandler from '../../node_modules/@middy/http-error-handler';
 import httpJsonBodyParser from '../../node_modules/@middy/http-json-body-parser';
 import * as AWS from 'aws-sdk';
-import {db} from '../../services/index';
+import {db} from '@zocom/services';
 
 
 const getOrderHandler: APIGatewayProxyHandler = async () => {
