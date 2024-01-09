@@ -1,0 +1,29 @@
+@use '@zocom/styles' as *;
+
+
+.price-box {
+    padding: $padding 0 ;
+    background-color: $shade-24-dark;
+    border-radius: $radius-tier-2;
+    $padding: $baseline;
+    justify-content: space-between;
+
+    h3 {
+        margin: $gap-sml;
+        @include fontsizeLarge;
+    }
+
+    p {
+        margin: $gap-sml;
+        margin-bottom: 20px;
+    }
+
+    .price {
+        display: flex;
+        @include fontsizeXLarge;
+        font-weight: 700;
+        justify-content: flex-end;
+        margin: $gap-sml;
+    }
+    
+}

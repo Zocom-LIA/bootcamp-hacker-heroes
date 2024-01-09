@@ -1,0 +1,4 @@
+{
+    "name": "@zocom/price-box",
+    "main": "./index.ts"
+}
