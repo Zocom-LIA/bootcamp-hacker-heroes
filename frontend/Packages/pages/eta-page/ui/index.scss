@@ -1,0 +1,18 @@
+@use '@zocom/styles' as *;
+
+.eta-page {
+    padding: $padding;
+    background-color: $clay;
+}
+
+.eta-container {
+    color: $color-text-primary; 
+    font-family:var(--font-family);
+    height: 100%;
+    padding: $padding;
+}
+
+.order-status {
+    @include fontsizeXLarge;
+    text-shadow: textShadow();
+}
