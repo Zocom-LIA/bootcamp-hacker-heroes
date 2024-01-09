@@ -1,5 +1,5 @@
-import { sendResponse } from '../../responses/index';
-import {db} from '../../services/index';
+import { sendResponse } from '@zocom/responses';
+import {db} from '@zocom/services';
 import { APIGatewayProxyEventV2, APIGatewayProxyStructuredResultV2 } from 'aws-lambda';
 
 

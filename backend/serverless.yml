@@ -18,6 +18,11 @@ plugins:
 package:
   individually: true
 
+custom:
+  webpack:
+    webpackConfig: ./webpack.config.js
+    includeModules: true  
+
 functions:
   getMenu:
     handler: functions/getMenu/index.handler

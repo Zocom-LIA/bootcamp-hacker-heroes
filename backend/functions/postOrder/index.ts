@@ -4,8 +4,8 @@
 //like this in the SK, ORDER#XXXXXX then orderdata has 
 //username orderid etc
 
-import { sendResponse } from '../../responses/index';
-import {db} from '../../services/index';
+import { sendResponse } from '@zocom/responses';
+import {db} from '@zocom/services';
 import middy from '../../node_modules/@middy/core';
 import Joi from 'joi';
 import { APIGatewayProxyEventV2, APIGatewayProxyStructuredResultV2 } from 'aws-lambda';
