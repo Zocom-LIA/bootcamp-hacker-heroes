@@ -25,8 +25,12 @@ const menuSlice = createSlice({
         },
         addDip(state, action: PayloadAction<dipItemType> ) {
             state.dip.push(action.payload)
-        }
+        },
 
+        clearMenu(state) {
+            state.wantons = [];
+            state.dip = [];
+        }
     }
 });
 

@@ -16,7 +16,7 @@ export type wontonsItemType = {
     name: string,
     price: number,
     desc: string,
-    ingidients: string[],
+    ingredients: string[],
 }
 
 export type dipItemType = Omit<wontonsItemType, 'ingidients'>; // dipItem type without ingidients property
