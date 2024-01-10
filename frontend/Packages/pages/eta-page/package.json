@@ -1,0 +1,4 @@
+{
+    "name": "@zocom/eta-page",
+    "main": "./index.ts"
+}

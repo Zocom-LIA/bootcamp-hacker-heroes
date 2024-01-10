@@ -1,35 +1,57 @@
+// @use '@zocom/styles' as *;
+
+
+// @mixin regularBase {
+//     font-weight: 700;
+//     @include fontsizeRegular();
+//     background-color: $color-background-button-primary;
+
+//     &:hover {
+//         filter: brightness(.95);
+//     }
+
+//     &:active {
+//         filter: brightness(1.05);
+//     }
+// }
+
+// button {
+//     border-radius: $radius-tier-2;
+
+//     &.button {
+//         &__regular {
+//             &--default {
+//                 @include regularBase();
+//             }
+//         }
+        
+//         &__stretch {            
+//             &--default {
+//                 width: 100%;
+//                 @include regularBase();
+//             }
+//         }
+//     }
+// }
 @use '@zocom/styles' as *;
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@200;400;600;700&display=swap');
 
-
-@mixin regularBase {
-    font-weight: 700;
-    @include fontsizeRegular();
-    background-color: $color-background-button-primary;
-
-    &:hover {
-        filter: brightness(.95);
-    }
-
-    &:active {
-        filter: brightness(1.05);
-    }
+.btn {
+    border-radius: $radius-tier-2;
+    background-color: $coal;
+    color: $snow;
+    font-family: 'Fira Sans', sans-serif;
+    @include fontsizeLarge;
+    width: 100%;
+    padding: $padding-large;
 }
 
-button {
-    border-radius: $radius-tier-2;
+.btn--clay {
+    background-color: $clay;
+    border: solid $snow;
+}
 
-    &.button {
-        &__regular {
-            &--default {
-                @include regularBase();
-            }
-        }
-        
-        &__stretch {            
-            &--default {
-                width: 100%;
-                @include regularBase();
-            }
-        }
-    }
+.btn--dark-mint {
+    background-color: $dark-mint;
+    border: solid $snow;
 }
