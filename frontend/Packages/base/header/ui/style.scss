@@ -1,10 +1,8 @@
 @use '@zocom/styles' as *;
 
 
-@mixin regularBase {
-    font-weight: 700;
-    font-size: $base-font-size;
-    background-color: $color-background-button;
-
+.header {
+    @include row;
+    width: 100%;
 }
 

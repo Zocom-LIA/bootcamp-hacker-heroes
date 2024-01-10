@@ -1,10 +1,11 @@
 import './index.scss';
 // import React from 'react';
 // import { Button } from '@zocom/button';
+import logo from '../../../shared/logo.png'
 import { Button, ButtonColor } from '@zocom/button';
 import { useNavigate } from 'react-router-dom' 
 import { Header } from '@zocom/header';
-import boxtop from './boxtop.svg';
+import boxtop from '../../../shared/boxtop.svg';
 
 export const EtaPage = () => {
     const navigate = useNavigate();
@@ -12,7 +13,7 @@ export const EtaPage = () => {
     
     return (
         <div className='eta-page'>
-            <Header title='Header'/>
+            <Header logo={logo}/>
             <main className='eta-container'>
                 <img src={boxtop} alt="boxtop" />
                 <h1 className='order-status'>DINA WOTONS TILLAGAS!</h1> 
