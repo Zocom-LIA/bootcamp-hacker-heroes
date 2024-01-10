@@ -73,6 +73,6 @@ export const OrderSchema = Joi.object({
 //fråga om hur sidan för ipad vy ska  uppdateras, webbsockets? realtime updates.
 //30 sec uppdateringar? 
 
-exports.handler = middy()
+export const handler = middy()
 .use (validateSchema(OrderSchema))
 .handler(handlerFunction)
