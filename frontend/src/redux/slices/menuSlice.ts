@@ -1,12 +1,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { wontonsItemType, dipItemType } from "@zocom/types";
+import { wontonsItemType, dipItemType, menu } from "@zocom/types";
 
 
 
-type menu = {
-    wantons: wontonsItemType[],
-    dip: dipItemType[],
-}
+
 
 
 const initialState:menu = {

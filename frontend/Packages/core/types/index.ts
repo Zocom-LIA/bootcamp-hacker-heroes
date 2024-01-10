@@ -21,6 +21,10 @@ export type wontonsItemType = {
 
 export type dipItemType = Omit<wontonsItemType, 'ingidients'>; // dipItem type without ingidients property
 
+export type menu = {
+    wantons: wontonsItemType[],
+    dip: dipItemType[],
+}
 export type cartItemType = {
     id: string;
     name: string;
