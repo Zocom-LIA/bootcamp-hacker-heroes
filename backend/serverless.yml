@@ -4,6 +4,7 @@ frameworkVersion: '3'
 provider:
   name: aws
   runtime: nodejs18.x
+  profile: ${env:PROFILE}
   region: eu-north-1
   # iam:
   #   role: ${env:LAMBDA_ROLE}
@@ -48,6 +49,12 @@ functions:
       - httpApi:
           path: '/api/orders'
           method: POST
+  updateOrder:
+    handler: functions/updateOrder/index.handler
+    events:
+      - httpApi:
+          path: '/api/orders'
+          method: PATCH
 
 resources:
   Resources:

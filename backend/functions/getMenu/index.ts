@@ -45,7 +45,7 @@ async function getMenuItems(path) {
     }
 }
 
-exports.handler = async (event: APIGatewayProxyEventV2): Promise<APIGatewayProxyStructuredResultV2> => {
+export const handler = async (event: APIGatewayProxyEventV2): Promise<APIGatewayProxyStructuredResultV2> => {
     const path = event.pathParameters.search;
     try {
         console.log(path);
