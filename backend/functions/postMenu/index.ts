@@ -61,6 +61,6 @@ export const menuSchema = Joi.object({
 //Format for now is menu#fullmenu for pk, 
 //sk will be either wontons#food or dip#sauce
 
-exports.handler = middy()
+export const handler = middy()
 .use (validateSchema(menuSchema))
 .handler(handlerFunction)

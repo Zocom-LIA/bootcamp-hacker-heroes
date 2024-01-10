@@ -49,11 +49,24 @@ json example (to be adjusted)
 {
   "PK": "User#82929-929292-929292",
 	"SK": "order#2024-08-08:12343",
-	"orderName": "Karlstad",
+	"orderItems": "Karlstad",
 	"customerName": "Henry",
-	"price": 9,
 	"orderNr": 8,
 	"orderId": "XXXXXX-XXXXXX-XXXXXX",
 	"status": "active",
 	"eta": "XXX",
 }
+
+UpdateOrder: 
+
+Simple function that changes status from active to finished when sent. The idea is that when you press the button in the kitchen view it changes status.
+To expand on this we can have a sort that only checks the datestamp of the current day to get relevant orders.
+
+{
+	"userId": "82929-929292-929292",
+	"orderId": "2024-08-08:1245"
+}
+
+GetKitchenOrder:
+
+Under construction but the concept is that it will get all the orders that have been placed, by using date as SK we can filter so that only the orders of the current day is displayed.
