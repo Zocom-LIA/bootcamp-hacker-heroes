@@ -62,7 +62,9 @@ async function orderConstructor(requestBody){
     "totalPrice": totalPrice,
     "orderPlaced": hourstamp,
     "status": "active",
-    "orderNr": orderNr
+    "orderNr": orderNr,
+    "userId": userId,
+    "orderId": orderId
   }
   console.log(order);
   return order

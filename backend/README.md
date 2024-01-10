@@ -40,21 +40,23 @@ Items are added one by one, so the first setup will be a bit menial, but in the 
 SendOrder: 
 The concept is that each order is made by an user whom have their own userId, and then stored under the users collection with order#timestamp, guests have random uuid.
 
-missing features right now are combining price in the backend, will have the userId generated in the backend since no login feature and timestamp made in backwnd as well. The eta needs to be based on the other orders. Basetime 5 minutes, every order above makes 1 more minute.
+missing features right now are combining price in the backend, will have the userId generated in the backend since no login feature and timestamp made in backwnd as well.
 
-orderNr är för enkel upphämtning för gäster.
-
-json example (to be adjusted)
+json example
 
 {
-  "PK": "User#82929-929292-929292",
-	"SK": "order#2024-08-08:12343",
-	"orderItems": "Karlstad",
-	"customerName": "Henry",
-	"orderNr": 8,
-	"orderId": "XXXXXX-XXXXXX-XXXXXX",
-	"status": "active",
-	"eta": "XXX",
+	"orderItems": [{
+		"name": "testing",
+		"desc": "wow description",
+		"ingredients": [
+				"kantarell",
+				"scharlottenlök",
+				"morot",
+				"bladpersilja"
+		],
+		"price": 10
+	}],
+	"customerName": "Hello"
 }
 
 UpdateOrder: 
@@ -70,3 +72,7 @@ To expand on this we can have a sort that only checks the datestamp of the curre
 GetKitchenOrder:
 
 Under construction but the concept is that it will get all the orders that have been placed, by using date as SK we can filter so that only the orders of the current day is displayed.
+
+GetOrderKvitto:
+
+Eta can maybe be handled here, where based on the amount of active orders a minute is added per order.
