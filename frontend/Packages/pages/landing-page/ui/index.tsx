@@ -7,22 +7,27 @@ import { useData } from "../data/index";
 import { useDispatch } from "react-redux";
 import { addDip, addWonton } from "../../../../src/redux/slices/menuSlice";
 
+
 export function LandingsPage() {
-   const [wantons, setWontons] = useState<wontonsItemType[] | void >([]);
-   const [dipItems, setDipItems] = useState<dipItemType[] | void >([]);
+   const [wontons, setWontons] = useState<wontonsItemType[] | null>([]);
+   const [dipItems, setDipItems] = useState<dipItemType[] | null>([]);
    const {getWontonsMenu,getDipsMenu} = useData();
   const dispatch = useDispatch(); 
 
   useEffect(() => {
     getWontonsMenu().then((res) => {
-      setWontons(res);
-      dispatch(addWonton(res));
+      setWontons(res ? res:null);
+      res && res.forEach(item => {
+        dispatch(addWonton(item));
+      });
      console.log(res);
     });
 
     getDipsMenu().then((res)=> {
-      setDipItems(res); 
-      dispatch(addDip(res));
+      setDipItems(res ? res:null ); 
+      res && res.forEach(item => {
+        dispatch(addDip(item));
+      });
 
       console.log(res);
     });
@@ -38,7 +43,7 @@ export function LandingsPage() {
           <section className="menu_products">
             
           {/* render the wantons */}
-          {wantons.length > 0 ? wantons.map((item, index) => (
+          {wontons && wontons.length > 0 ? wontons.map((item, index) => (
               <MenuItem
                 key={index}
                 name={item.name}
@@ -52,7 +57,7 @@ export function LandingsPage() {
 
             
             {/* render the dips */}
-           { dipItems.length > 0 ?  <MenuItem
+           {dipItems &&  dipItems.length > 0 ?  <MenuItem
                 name={"Dipsås"}
                 price={19}
                 isDip={true}

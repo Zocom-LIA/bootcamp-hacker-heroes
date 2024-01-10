@@ -17,7 +17,7 @@ const menuSlice = createSlice({
     initialState,
     reducers: {
         //Payload
-        addWonton(state, action: PayloadAction<wontonsItemType> ) {
+        addWonton(state, action: PayloadAction<wontonsItemType > ) {
             const ItemIndex = state.wontons.findIndex((item) => item.SK === action.payload.SK);
             if(ItemIndex === -1 ) state.wontons.push(action.payload)
             else return 
