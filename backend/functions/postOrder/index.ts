@@ -28,6 +28,8 @@ const milliseconds = String(currentDate.getMilliseconds()).padStart(4, '0');
 const timestamp = `${currentDate.toISOString().slice(0, 19)}:${milliseconds}`;
 
 
+//the above will be moved to it's own package.
+
 export function validateSchema(schema) {
   return {
     before: async (request) => {
@@ -50,10 +52,6 @@ async function orderConstructor(requestBody){
   }
   const orderNr = generateFiveDigitRandom();
 
-
-  console.log(requestBody)
-  console.log(userId, orderId)
-
   const order = {
     "PK": `User#${userId}`,
     "SK": `Order#${orderId}`,
@@ -66,7 +64,6 @@ async function orderConstructor(requestBody){
     "userId": userId,
     "orderId": orderId
   }
-  console.log(order);
   return order
 }
 
@@ -87,7 +84,6 @@ const handlerFunction = async (event: APIGatewayProxyEventV2): Promise<APIGatewa
     try {
         const requestBody = JSON.parse(event.body);
         const order = await orderConstructor(requestBody);
-        console.log(order);
         return postMenu(order);
     } catch (error) {
         console.error('Error json parse', error);
