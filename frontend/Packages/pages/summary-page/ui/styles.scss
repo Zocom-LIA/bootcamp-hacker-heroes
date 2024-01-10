@@ -5,14 +5,7 @@ body {
     font-size: medium;
 }
 
-.item {
-    
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: $padding-large;
-    gap: $gap;
-}
+
 .cart-space {
     display: flex;
     padding: $padding-huge;
