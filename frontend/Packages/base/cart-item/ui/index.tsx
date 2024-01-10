@@ -13,10 +13,10 @@ export const CartItem = ({ title, quantity, price }: cartItemProps) => {
 
     return (
         <div className="cart-item">
-            <p className="cart-item__title">{title}</p>
-            <p className="cart-item__quantity">{quantity}</p>
+            <h2 className="cart-item__title">{title}</h2>
             <span className="cart-item__space"></span>
-            <p className="cart-item__price">{price}</p>
+            <p className="cart-item__price">{price} SEK</p>
+            <p className="cart-item__quantity">{quantity} stycken</p>
         </div>
     )
 }

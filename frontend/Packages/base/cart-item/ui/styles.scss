@@ -2,18 +2,15 @@
 
 
 .cart-items {
+
+    padding: $padding 0 ;  
     
-    padding: $padding-huge ; 
-    flex: 1;
+}
     
 
-}
+
    
    .cart-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: $padding-large;
     border-bottom: 1px solid ;
     font-family: 'Fira Sans', sans-serif;
     @include fontsizeLarge;
@@ -21,19 +18,23 @@
    }
    
    .cart-item__title {
-    font-size: $base;
-    margin-right: 20px;
+    gap: $gap;
+    
    }
+
    
    .cart-item__price {
-    font-size: 16px;
+    display: flex;
+    justify-content: flex-end;
     
     
     
    }
    .cart-item__space{
+    display: flex;
+    border-bottom: $radius-tier-3 dotted;
     
-    flex: 1;
+    
 }
    
     

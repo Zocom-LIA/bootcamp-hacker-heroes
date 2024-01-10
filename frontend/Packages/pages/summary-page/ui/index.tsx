@@ -12,7 +12,7 @@ export function SummaryPage () {
  const cartItems = [
     { title: 'KARLSTAD', quantity: 3, price: 30 },
     { title: 'HỌ CHI MINH ',quantity: 2, price: 20 },
-    { title: 'KINGSTON + 2 stycken',quantity: 2, price: 20 },
+    { title: 'KINGSTON ',quantity: 2, price: 20 },
     { title: 'SWEET CHILI DIP ',quantity: 1, price: 10 },
     { title: 'GUACAMOLE ',quantity: 1, price: 10 },
  ];
