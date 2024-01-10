@@ -1,0 +1,13 @@
+@use '@zocom/styles' as *;
+
+body {
+    background-color: $snow;
+    font-size: medium;
+}
+
+
+.cart-space {
+    display: flex;
+    padding: $padding-huge;
+    gap: $gap-large;
+}
