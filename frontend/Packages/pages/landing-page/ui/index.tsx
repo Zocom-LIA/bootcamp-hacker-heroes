@@ -4,15 +4,27 @@ import {Header} from "@zocom/header";
 import { dipItemType, wontonsItemType } from "@zocom/types";
 import { useEffect, useState } from "react";
 import { useData } from "../data/index";
+import { useDispatch } from "react-redux";
+import { addDip, addWonton } from "../../../../src/redux/slices/menuSlice";
 
 export function LandingsPage() {
-   const [wantons, setWantons] = useState<wontonsItemType[]>([]);
-   const [dipItems, setDipItems] = useState<dipItemType[]>([]);
-    
-   const {getMenu} = useData();
+   const [wantons, setWontons] = useState<wontonsItemType[] | void >([]);
+   const [dipItems, setDipItems] = useState<dipItemType[] | void >([]);
+   const {getWontonsMenu,getDipsMenu} = useData();
+  const dispatch = useDispatch(); 
+
   useEffect(() => {
-    getMenu().then((res) => {
-     console.log(res.Items);
+    getWontonsMenu().then((res) => {
+      setWontons(res);
+      dispatch(addWonton(res));
+     console.log(res);
+    });
+
+    getDipsMenu().then((res)=> {
+      setDipItems(res); 
+      dispatch(addDip(res));
+
+      console.log(res);
     });
 
   }, []);

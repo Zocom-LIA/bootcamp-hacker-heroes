@@ -7,7 +7,7 @@ import { wontonsItemType, dipItemType, menu } from "@zocom/types";
 
 
 const initialState:menu = {
-    wantons: [],
+    wontons: [],
     dip: [],
 }
 
@@ -17,20 +17,24 @@ const menuSlice = createSlice({
     initialState,
     reducers: {
         //Payload
-        addWanton(state, action: PayloadAction<wontonsItemType> ) {
-            state.wantons.push(action.payload)
+        addWonton(state, action: PayloadAction<wontonsItemType> ) {
+            const ItemIndex = state.wontons.findIndex((item) => item.SK === action.payload.SK);
+            if(ItemIndex === -1 ) state.wontons.push(action.payload)
+            else return 
         },
         addDip(state, action: PayloadAction<dipItemType> ) {
-            state.dip.push(action.payload)
+            const ItemIndex = state.dip.findIndex((item) => item.SK === action.payload.SK);
+            if(ItemIndex === -1 ) state.dip.push(action.payload)
+            else return 
         },
 
         clearMenu(state) {
-            state.wantons = [];
+            state.wontons = [];
             state.dip = [];
         }
     }
 });
 
 
-export const { addWanton, addDip } = menuSlice.actions;
+export const { addWonton, addDip } = menuSlice.actions;
 export default menuSlice.reducer;

@@ -1,18 +1,29 @@
-import { menu } from "@zocom/types";
+import { wontonsItemType,dipItemType } from "@zocom/types";
 
 
 export const useData = ()=> {
     const HOST = (import.meta as any).env.VITE_HOST;
     return {
-        async getMenu(): Promise<any | void > {
+        async getWontonsMenu(): Promise<wontonsItemType[] | void > {
             try {
-                const res = await fetch( HOST + '/api/menu/dips')
+                const res = await fetch( HOST + '/api/menu/wontons')
                 const data = await res.json()
-                return data
+                return data.Items
             } catch (error) {
                 console.log(error);
                 
             }
-        }
+        },
+        async getDipsMenu(): Promise<dipItemType[] | void > {
+            try {
+                const res = await fetch( HOST + '/api/menu/dips')
+                const data = await res.json()
+                return data.Items
+            } catch (error) {
+                console.log(error);
+                
+            }
+        },
+
     }
 }

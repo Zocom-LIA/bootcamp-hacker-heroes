@@ -13,6 +13,8 @@ export enum StyleTypes {
 
 
 export type wontonsItemType = {
+    PK:string,
+    SK:string,
     name: string,
     price: number,
     desc: string,
@@ -22,7 +24,7 @@ export type wontonsItemType = {
 export type dipItemType = Omit<wontonsItemType, 'ingidients'>; // dipItem type without ingidients property
 
 export type menu = {
-    wantons: wontonsItemType[],
+    wontons: wontonsItemType[],
     dip: dipItemType[],
 }
 export type cartItemType = {
