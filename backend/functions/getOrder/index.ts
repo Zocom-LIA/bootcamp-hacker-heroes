@@ -36,7 +36,7 @@ const getOrderHandler: APIGatewayProxyHandler = async (event) => {
     } else {
       return {
         statusCode: 404,
-        body: JSON.stringify({ error: 'Order not found', PK: `user#${userId}`, SK: `order#${orderNr}`, orderNr: orderNr }),
+        body: JSON.stringify({ error: 'Order not found',}),
       };
     }
   } catch (error) {
