@@ -1,10 +1,14 @@
 @use '@zocom/styles' as *;
 
 
-@mixin regularBase {
-    font-weight: 700;
-    font-size: $base-font-size;
-    background-color: $color-background-button;
-
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: $gap;
 }
 
+img {
+    height: $base * 4;
+    width: auto;
+}

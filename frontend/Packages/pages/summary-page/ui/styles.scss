@@ -1,0 +1,20 @@
+@use '@zocom/styles' as *;
+
+body {
+    background-color: $snow;
+    font-size: medium;
+}
+
+.item {
+    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: $padding-large;
+    gap: $gap;
+}
+.cart-space {
+    display: flex;
+    padding: $padding-huge;
+    gap: $gap-large;
+}
