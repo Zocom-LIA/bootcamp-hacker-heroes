@@ -40,8 +40,8 @@ functions:
     handler: functions/getOrder/index.handler
     events:
       - httpApi:
-          path: '/api/orders'
-          method: GET 
+          path: '/api/orders/kvitto'
+          method: POST 
   postOrder:
     handler: functions/postOrder/index.handler
     events:
