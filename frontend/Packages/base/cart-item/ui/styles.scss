@@ -1,7 +1,8 @@
 @use '@zocom/styles' as *;
 
+
 .cart-items {
-    text-shadow: textShadow();
+    
     padding: $padding-huge ; 
     flex: 1;
     
@@ -14,6 +15,8 @@
     align-items: center;
     padding: $padding-large;
     border-bottom: 1px solid ;
+    font-family: 'Fira Sans', sans-serif;
+    @include fontsizeLarge;
     
    }
    

@@ -1,5 +1,5 @@
 @use '@zocom/styles' as *;
-
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@200;400;600;700&display=swap');
 
 .container {
     display: flex;
@@ -8,10 +8,11 @@
 
 
 .price-box {
-    width: 90%;
-    padding: $padding 0 ;
+    width: 100%;
+    padding: $padding-sml;
     background-color: $shade-24-dark;
     border-radius: $radius-tier-2;
+    font-family: 'Fira Sans', sans-serif;
     
     
    
