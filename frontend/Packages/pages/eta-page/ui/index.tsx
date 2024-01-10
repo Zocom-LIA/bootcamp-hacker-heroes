@@ -1,7 +1,7 @@
 import './index.scss';
 // import React from 'react';
 // import { Button } from '@zocom/button';
-import { Btn, BtnColor } from '@zocom/btn';
+import { Button, ButtonColor } from '@zocom/button';
 import { useNavigate } from 'react-router-dom' 
 import { Header } from '@zocom/header';
 import boxtop from './boxtop.svg';
@@ -19,8 +19,8 @@ export const EtaPage = () => {
                 <p className='eta-status'>ETA  {eta} MIN</p>
                 <p className='order-nr'>#4kjwsdf234k</p>
             </main>
-            <Btn onClick={() => navigate('/')}>BESTÄLL MER</Btn>
-            <Btn color={BtnColor.CLAY} onClick={() => navigate('/receipt')}>SE KVITTO</Btn>
+            <Button onClick={() => navigate('/')}>BESTÄLL MER</Button>
+            <Button color={ButtonColor.CLAY} onClick={() => navigate('/receipt')}>SE KVITTO</Button>
         </div>
     )
 }
