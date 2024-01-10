@@ -1,0 +1,14 @@
+@use '@zocom/styles' as *;
+
+.order-done-page {
+    padding: $padding;
+    background-color: $dark-mint;
+    @include column;
+}
+
+.order-done-container {
+    color: $color-text-primary; 
+    font-family:var(--font-family);
+    height: 100%;
+    padding: $padding;
+}

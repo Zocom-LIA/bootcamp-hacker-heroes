@@ -1,0 +1,21 @@
+@use '@zocom/styles' as *;
+
+.menu_item {
+    text-shadow: textShadow();
+    padding: $padding 0 ; 
+    border-bottom: 1px dotted $color-text-primary;
+}
+.menu_item-header{
+    display: flex;
+    justify-content: space-between;
+    gap: $gap;
+    @include fontsizeLarge;
+    margin-bottom: $gap-sml;
+    text-transform: uppercase;
+   
+}
+
+.menu_item-space{
+    border-bottom: $radius-tier-3 dotted $color-text-primary;
+    flex: 1;
+}

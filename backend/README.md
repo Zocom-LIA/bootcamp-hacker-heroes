@@ -1,92 +1,59 @@
-<!--
-title: 'AWS Simple HTTP Endpoint example in NodeJS'
-description: 'This template demonstrates how to make a simple HTTP API with Node.js running on AWS Lambda and API Gateway using the Serverless Framework.'
-layout: Doc
-framework: v3
-platform: AWS
-language: nodeJS
-authorLink: 'https://github.com/serverless'
-authorName: 'Serverless, inc.'
-authorAvatar: 'https://avatars1.githubusercontent.com/u/13742415?s=200&v=4'
--->
+<!-- Backend documentation for Hacker Heroes. -->
 
-# Serverless Framework Node HTTP API on AWS
+DB single table design, one of the main resourses used while learning: https://www.alexdebrie.com/posts/dynamodb-single-table/
 
-This template demonstrates how to make a simple HTTP API with Node.js running on AWS Lambda and API Gateway using the Serverless Framework.
+As you use the serverless deploy command (sls deploy depending on OS) you'll get your api paths generated, below is a short guide on how to use each.
 
-This template does not include any kind of persistence (database). For more advanced examples, check out the [serverless/examples repository](https://github.com/serverless/examples/) which includes Typescript, Mongo, DynamoDB and other examples.
+<!-- Features -->
 
-## Usage
+GetMenu:
 
-### Deployment
+Currently there is support for two ways to use the GetMenu, these are the following.
 
-```
-$ serverless deploy
-```
+1. Have your path end with api/menu/ which will return every item in the database under the meny primary key. It is very important that menu has the / after. 
 
-After deploying, you should see output similar to:
+2. Have your path end with api/menu/wontons or api/menu/dip , this will return either all wontons or all dips depending on which path end is used.
 
-```bash
-Deploying aws-node-http-api-project to stage dev (us-east-1)
+We will be using one of these two methods to render the menu, the approach we don't end up using will be removed.
 
-✔ Service deployed to stack aws-node-http-api-project-dev (152s)
+PostMenu:
 
-endpoint: GET - https://xxxxxxxxxx.execute-api.us-east-1.amazonaws.com/
-functions:
-  hello: aws-node-http-api-project-dev-hello (1.9 kB)
-```
+A post call to api/menu. The json structure is the following.
 
-_Note_: In current form, after deployment, your API is public and can be invoked by anyone. For production deployments, you might want to configure an authorizer. For details on how to do that, refer to [http event docs](https://www.serverless.com/framework/docs/providers/aws/events/apigateway/).
 
-### Invocation
-
-After successful deployment, you can call the created application via HTTP:
-
-```bash
-curl https://xxxxxxx.execute-api.us-east-1.amazonaws.com/
-```
-
-Which should result in response similar to the following (removed `input` content for brevity):
-
-```json
 {
-  "message": "Go Serverless v2.0! Your function executed successfully!",
-  "input": {
-    ...
-  }
+  "PK": "Meny",
+	"SK": "wontons#Karlstad",
+	"name": "Karlstad",
+	"desc": "En god friterad wonton med smaker från de värmländska skogarna.",
+	"ingredients": [
+				"kantarell",
+				"scharlottenlök",
+				"morot",
+				"bladpersilja"
+			],
+	"price": 9
 }
-```
 
-### Local development
+Items are added one by one, so the first setup will be a bit menial, but in the future if the kitchen want to add more recipes they'll be adding them one by one from their own feature. In SK replace wontons for dip if adding a dip, for example dips#bearnaise
 
-You can invoke your function locally by using the following command:
+SendOrder: 
+The concept is that each order is made by an user whom have their own userId, and then stored under the users collection with order#timestamp, guests have random uuid.
 
-```bash
-serverless invoke local --function hello
-```
+missing features right now are combining price in the backend, will have the userId generated in the backend since no login feature and timestamp made in backwnd as well. The eta needs to be based on the other orders. Basetime 5 minutes, every order above makes 1 more minute.
 
-Which should result in response similar to the following:
+orderNr är för enkel upphämtning för gäster.
 
-```
+json example
+
 {
-  "statusCode": 200,
-  "body": "{\n  \"message\": \"Go Serverless v3.0! Your function executed successfully!\",\n  \"input\": \"\"\n}"
+  "PK": "User#82929-929292-929292",
+	"SK": "order#2024-08-08:12343",
+	"orderName": "Karlstad",
+	"customerName": "Henry",
+	"price": 9,
+	"orderNr": 8,
+	"orderId": "XXXXXX-XXXXXX-XXXXXX",
+	"status": "active",
+	"eta": "XXX",
 }
-```
-
-
-Alternatively, it is also possible to emulate API Gateway and Lambda locally by using `serverless-offline` plugin. In order to do that, execute the following command:
-
-```bash
-serverless plugin install -n serverless-offline
-```
-
-It will add the `serverless-offline` plugin to `devDependencies` in `package.json` file as well as will add it to `plugins` in `serverless.yml`.
-
-After installation, you can start local emulation with:
-
-```
-serverless offline
-```
-
-To learn more about the capabilities of `serverless-offline`, please refer to its [GitHub repository](https://github.com/dherault/serverless-offline).

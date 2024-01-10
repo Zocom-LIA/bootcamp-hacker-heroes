@@ -4,7 +4,6 @@ frameworkVersion: '3'
 provider:
   name: aws
   runtime: nodejs18.x
-  profile: ${env:PROFILE}
   region: eu-north-1
   iam:
     role: ${env:LAMBDA_ROLE}
@@ -18,12 +17,17 @@ plugins:
 package:
   individually: true
 
+custom:
+  webpack:
+    webpackConfig: ./webpack.config.js
+    includeModules: true  
+
 functions:
   getMenu:
     handler: functions/getMenu/index.handler
     events:
       - httpApi:
-          path: '/api/menu'
+          path: '/api/menu/{search}'
           method: GET
   
   postMenu:
@@ -32,31 +36,34 @@ functions:
       - httpApi:
           path: '/api/menu'
           method: POST        
-
-  
+  getOrder:
+    handler: functions/getOrder/index.handler
+    events:
+      - httpApi:
+          path: '/api/orders'
+          method: GET 
+  postOrder:
+    handler: functions/postOrder/index.handler
+    events:
+      - httpApi:
+          path: '/api/orders'
+          method: POST
 
 resources:
   Resources:
-    menuDb:
+    YumYum:
       Type: AWS::DynamoDB::Table
       Properties:
-        TableName: menu-db
+        TableName: YumYumDB
         AttributeDefinitions:
-          - AttributeName: menuId
+          - AttributeName: PK
             AttributeType: S
+          - AttributeName: SK
+            AttributeType: S  
         KeySchema:
-          - AttributeName: menuId
+          - AttributeName: PK
             KeyType: HASH
+          - AttributeName: SK
+            KeyType: RANGE
         BillingMode: PAY_PER_REQUEST
-    
-    ordersDb:
-      Type: AWS::DynamoDB::Table
-      Properties:
-        TableName: orders-db
-        AttributeDefinitions:
-          - AttributeName: orderId
-            AttributeType: S
-        KeySchema:
-          - AttributeName: orderId
-            KeyType: HASH
-        BillingMode: PAY_PER_REQUEST
+

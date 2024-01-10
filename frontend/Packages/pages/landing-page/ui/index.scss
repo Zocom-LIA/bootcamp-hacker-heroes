@@ -1,0 +1,23 @@
+@use '@zocom/styles' as *;
+
+.landingPage{
+    padding: $padding;
+    background-color: $mint;
+    background-image: url('/assets/bg.png');
+    background-repeat: repeat;
+    background-size: contain;
+}
+
+.menu_container {
+    background-color: $color-background-primary;
+    color: $color-text-primary; 
+    font-family:var(--font-family);
+    height: 100%;
+    padding: $padding;
+}
+
+.menu_title {
+    @include fontsizeXLarge;
+    text-shadow: textShadow(); 
+    padding: $padding 0;
+}

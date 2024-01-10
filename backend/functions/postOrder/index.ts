@@ -1,16 +1,25 @@
+//design will be PK User#username
+//then SK will be #Profile#username which holds all userinfo
+//then each PK User#username will store the orders 
+//like this in the SK, ORDER#XXXXXX then orderdata has 
+//username orderid etc
+
 import { sendResponse } from '@zocom/responses';
 import {db} from '@zocom/services';
 import middy from '../../node_modules/@middy/core';
 import Joi from 'joi';
 import { APIGatewayProxyEventV2, APIGatewayProxyStructuredResultV2 } from 'aws-lambda';
 
-type MenuType = {
-  PK: string | number,
+type OrderType = {
+  PK: string,
   SK: string,
-  name: string,
-  desc: string,
-  ingredients: string[],
-  price: number
+  orderName: string,
+  customerName: string,
+  price: number,
+  orderNr: number,
+  orderId: string,
+  status: string,
+  eta: string,
 }
 
 export function validateSchema(schema) {
@@ -25,11 +34,11 @@ export function validateSchema(schema) {
   };
 }
 
-async function postMenu(menu: MenuType) {
+async function postMenu(order: OrderType) {
    try {
     const params = {
         TableName: "YumYumDB",
-        Item: menu
+        Item: order
     }
     await db.put(params).promise();
     return sendResponse(200, { success: true } );
@@ -49,18 +58,21 @@ const handlerFunction = async (event: APIGatewayProxyEventV2): Promise<APIGatewa
     }
 }
 
-export const menuSchema = Joi.object({
+export const OrderSchema = Joi.object({
   PK: Joi.string().min(3).max(30).required(),
   SK: Joi.string().min(3).max(50).required(),
-  name: Joi.string().min(3).max(20).required(),
-  desc: Joi.string().min(3).max(200).optional(),
-  ingredients: Joi.array().items(Joi.string()).optional(),
+  orderName: Joi.string().min(3).max(20).required(),
+  customerName: Joi.string().min(3).max(200).required(),
   price: Joi.number().min(3).max(1000).required(),
+  orderNr: Joi.number().min(3).max(1000).required(),
+  orderId: Joi.string().min(3).max(200).required(),
+  status: Joi.string().min(3).max(200).required(),
+  eta: Joi.string().min(3).max(200).required()
 });
 
-//Format for now is menu#fullmenu for pk, 
-//sk will be either wontons#food or dip#sauce
+//fråga om hur sidan för ipad vy ska  uppdateras, webbsockets? realtime updates.
+//30 sec uppdateringar? 
 
 exports.handler = middy()
-.use (validateSchema(menuSchema))
+.use (validateSchema(OrderSchema))
 .handler(handlerFunction)
