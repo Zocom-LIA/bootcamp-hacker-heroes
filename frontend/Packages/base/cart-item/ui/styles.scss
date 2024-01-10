@@ -1,0 +1,36 @@
+@use '@zocom/styles' as *;
+
+.cart-items {
+    text-shadow: textShadow();
+    padding: $padding-huge ; 
+    flex: 1;
+    
+
+}
+   
+   .cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: $padding-large;
+    border-bottom: 1px solid ;
+    
+   }
+   
+   .cart-item__title {
+    font-size: $base;
+    margin-right: 20px;
+   }
+   
+   .cart-item__price {
+    font-size: 16px;
+    
+    
+    
+   }
+   .cart-item__space{
+    
+    flex: 1;
+}
+   
+    
