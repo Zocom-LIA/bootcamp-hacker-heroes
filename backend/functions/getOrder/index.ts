@@ -1,26 +1,27 @@
 import { APIGatewayProxyHandler } from 'aws-lambda';
 import middy from '../../node_modules/@middy/core';
 import httpErrorHandler from '../../node_modules/@middy/http-error-handler';
-import httpJsonBodyParser from '../../node_modules/@middy/http-json-body-parser';
 import * as AWS from 'aws-sdk';
 import { db } from '@zocom/services';
 
 const getOrderHandler: APIGatewayProxyHandler = async (event) => {
-  // Extract orderNr from the query parameters
-  const orderNr = event.queryStringParameters?.orderNr;
+ 
+  const requestBody = JSON.parse(event.body);
+  const { userId, orderId } = requestBody;
 
-  if (!orderNr) {
+  if (!orderId || !userId) {
     return {
       statusCode: 400,
-      body: JSON.stringify({ error: 'orderNr is required in the query parameters' }),
+      body: JSON.stringify({ error: 'Both orderNr and userId are required in the query parameters' }),
     };
   }
 
   const params: AWS.DynamoDB.DocumentClient.QueryInput = {
     TableName: "YumYumDB",
-    KeyConditionExpression: 'orderNr = :orderNr',
+    KeyConditionExpression: 'PK = :pk AND SK = :sk',
     ExpressionAttributeValues: {
-      ':orderNr': orderNr,
+      ':pk': `User#${userId}`,
+      ':sk': `order#${orderId}`,
     },
   };
 
@@ -30,12 +31,12 @@ const getOrderHandler: APIGatewayProxyHandler = async (event) => {
     if (result.Items && result.Items.length > 0) {
       return {
         statusCode: 200,
-        body: JSON.stringify(result.Items[0]), // Assuming orderNr is unique, so we take the first item
+        body: JSON.stringify(result.Items[0]), 
       };
     } else {
       return {
         statusCode: 404,
-        body: JSON.stringify({ error: 'Order not found' }),
+        body: JSON.stringify({ error: 'Order not found', PK: `user#${userId}`, SK: `order#${orderNr}`, orderNr: orderNr }),
       };
     }
   } catch (error) {
@@ -48,5 +49,4 @@ const getOrderHandler: APIGatewayProxyHandler = async (event) => {
 };
 
 export const handler = middy(getOrderHandler)
-  .use(httpJsonBodyParser())
   .use(httpErrorHandler());
