@@ -2,9 +2,16 @@
 
 .menu_item {
     text-shadow: textShadow();
-    padding: $padding 0 ; 
+    padding: $padding  ; 
     border-bottom: 1px dotted $color-text-primary;
+    &:hover {
+        background-color: $shade-24-light;
+    }
+    
+    cursor: pointer;
+
 }
+
 .menu_item-header{
     display: flex;
     justify-content: space-between;
@@ -12,10 +19,11 @@
     @include fontsizeLarge;
     margin-bottom: $gap-sml;
     text-transform: uppercase;
-   
+
 }
 
 .menu_item-space{
     border-bottom: $radius-tier-3 dotted $color-text-primary;
     flex: 1;
+
 }
