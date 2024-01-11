@@ -8,7 +8,12 @@ import {randomUUID} from 'crypto'
 type OrderType = {
   PK: string,
   SK: string,
-  orderItems: string[],
+  orderItems: {
+    name: string,
+    desc?: string,
+    ingredients?: string[],
+    price: number,
+  }[],
   customerName: string,
   totalPrice: number,
   orderNr: number,
@@ -45,8 +50,8 @@ export function validateSchema(schema) {
 async function orderConstructor(requestBody){
   const userId = requestBody.userId || randomUUID();
   const orderId = timestamp;
-  const totalPrice = 200; 
-  // totalPrice is temporary
+  const totalPrice = requestBody.orderItems.reduce((total, item) => total + item.price, 0);
+
   function generateFiveDigitRandom() {
     return Math.floor(10000 + Math.random() * 90000);
   }
