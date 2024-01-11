@@ -11,6 +11,7 @@ export const KitchenView = () => {
                     <h1 className="kitchen_title">On going</h1>
                     <section className="kitchen_cards"></section>
                 </section>
+                
                 <section className="kitchen_done">
                     <h1 className="kitchen_title">done</h1>
                     <section className="kitchen_cards"></section>
