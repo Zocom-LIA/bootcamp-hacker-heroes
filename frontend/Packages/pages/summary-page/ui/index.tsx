@@ -2,9 +2,10 @@
 import { PriceBox } from "@zocom/price-box";
 import { CartItem } from "@zocom/cart-item/";
 import { Header } from "@zocom/header";
-import { Button, ButtonColor } from '@zocom/button';
+import { Button, ButtonColor, ButtonSize } from '@zocom/button';
 import { useNavigate } from 'react-router-dom'
 import "./styles.scss"
+import cartSimple from '../../../shared/cart-simple.svg'
 
 export function SummaryPage () {
  const navigate = useNavigate();
@@ -21,7 +22,7 @@ export function SummaryPage () {
 
  return (
     <div className="App">
-      <Header title="Header" />
+      <Header cart={cartSimple} />
       <ul className="cart-items">
         {cartItems.map((item, index) => (
           <CartItem key={index} title={item.title} quantity={item.quantity} price={item.price} />
@@ -29,7 +30,7 @@ export function SummaryPage () {
       </ul>
       <span className="cart-space"></span>
         <PriceBox price={totalPrice} />
-        <Button color={ButtonColor.CLAY} onClick={() => navigate('/eta')}>TAKE MY MONEY!</Button>
+        <Button size={ButtonSize.STRETCH} color={ButtonColor.CLAY} onClick={() => navigate('/eta')}>TAKE MY MONEY!</Button>
         
       </div>
       
