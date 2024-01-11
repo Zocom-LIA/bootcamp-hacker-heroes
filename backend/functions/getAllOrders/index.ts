@@ -1,27 +1,17 @@
 import { APIGatewayProxyHandler } from 'aws-lambda';
 import middy from '../../node_modules/@middy/core';
 import httpErrorHandler from '../../node_modules/@middy/http-error-handler';
-import * as AWS from 'aws-sdk';
 import { db } from '@zocom/services';
 
-const getOrderHandler: APIGatewayProxyHandler = async (event) => {
+const getOrderHandler: APIGatewayProxyHandler = async () => {
  
-  const requestBody = JSON.parse(event.body);
-  const { orderId } = requestBody;
 
-  if (!orderId) {
-    return {
-      statusCode: 400,
-      body: JSON.stringify({ error: 'orderNr is required in the query parameters' }),
-    };
-  }
-
-  const params: AWS.DynamoDB.DocumentClient.QueryInput = {
+  const params = {
     TableName: "YumYumDB",
-    KeyConditionExpression: 'PK = :pk AND SK = :sk',
+    KeyConditionExpression: 'PK = :pkVal AND begins_with(SK, :skVal)',
     ExpressionAttributeValues: {
-      ':pk': `Kitchen`,
-      ':sk': `Order#${orderId}`,
+      ':pkVal': "Kitchen",
+      ':skVal': "Order",
     },
   };
 
@@ -31,7 +21,7 @@ const getOrderHandler: APIGatewayProxyHandler = async (event) => {
     if (result.Items && result.Items.length > 0) {
       return {
         statusCode: 200,
-        body: JSON.stringify(result.Items[0]), 
+        body: JSON.stringify(result.Items), 
       };
     } else {
       return {

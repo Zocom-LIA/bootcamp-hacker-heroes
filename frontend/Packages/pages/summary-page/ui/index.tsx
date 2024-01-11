@@ -6,11 +6,15 @@ import { Button, ButtonColor, ButtonSize } from '@zocom/button';
 import { useNavigate } from 'react-router-dom'
 import { useSelector } from "react-redux";
 import "./styles.scss"
+
+import cartSimple from '../../../shared/cart-simple.svg'
+
 import { cartItemType } from "@zocom/types";
 import { RootState } from "../../../../src/redux/store";
 import cartSimple from '../../../shared/cart-simple.svg'
 import { useDispatch } from "react-redux";
 import { updateQuantity } from "../../../../src/redux/slices/cartSlice";
+
 
 export function SummaryPage () {
  const navigate = useNavigate();
@@ -39,7 +43,8 @@ const handleDecrement = (item: cartItemType) => {
       </ul>
       <span className="cart-space"></span>
         <PriceBox price={totalPrice} />
-        <Button color={ButtonColor.CLAY} size={ButtonSize.STRETCH} onClick={() => navigate('/eta')}>TAKE MY MONEY!</Button>
+        <Button size={ButtonSize.STRETCH} color={ButtonColor.CLAY} onClick={() => navigate('/eta')}>TAKE MY MONEY!</Button>
+
         
       </div>
       
