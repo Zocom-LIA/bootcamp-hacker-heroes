@@ -58,7 +58,7 @@ async function orderConstructor(requestBody){
   const orderNr = generateFiveDigitRandom();
 
   const order = {
-    "PK": `User#${userId}`,
+    "PK": `Kitchen`,
     "SK": `Order#${orderId}`,
     "orderItems": requestBody.orderItems,
     "customerName": requestBody.customerName || "guest",

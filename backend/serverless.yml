@@ -8,6 +8,9 @@ provider:
   region: eu-north-1
   iam:
     role: ${env:LAMBDA_ROLE}
+
+  # iam:
+    # role: ${env:LAMBDA_ROLE}
   deploymentMethod: direct
 
 useDotenv: true  
@@ -55,6 +58,12 @@ functions:
       - httpApi:
           path: '/api/orders'
           method: PATCH
+  getallOrders:
+    handler: functions/getAllOrders/index.handler
+    events:
+      - httpApi:
+          path: '/api/orders'
+          method: GET
 
 resources:
   Resources:

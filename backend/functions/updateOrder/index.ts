@@ -25,7 +25,7 @@ async function updateOrder(orderId: string, userId : string) {
         const dbControl = await db.get({
             TableName: "YumYumDB",
             Key: {
-                "PK": `User#${userId}`,
+                "PK": `Kitchen`,
                 "SK": `Order#${orderId}`
             }
         }).promise();
@@ -36,7 +36,7 @@ async function updateOrder(orderId: string, userId : string) {
         const params = {
             TableName: "YumYumDB",
             Key: {
-                "PK": `User#${userId}`,
+                "PK": `Kitchen`,
                 "SK": `Order#${orderId}`
             },
             UpdateExpression: `SET #status = :updatedStatus`,
@@ -71,7 +71,6 @@ const handlerFunction = async (event: APIGatewayProxyEventV2): Promise<APIGatewa
 }
 
 export const updateSchema = Joi.object({
-  userId: Joi.string().min(3).max(50).required(),
   orderId: Joi.string().min(3).max(50).required()
 });
 
