@@ -1,0 +1,15 @@
+@use '@zocom/styles' as *;
+
+.receipt-page {
+    padding: $padding;
+    background-color: $clay;
+    @include column;
+}
+
+.receipt-container {
+    background-color: $snow;
+    width: 100%;
+    height: 100%;
+    @include column;
+}
+
