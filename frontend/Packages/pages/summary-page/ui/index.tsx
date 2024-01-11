@@ -34,8 +34,8 @@ const handleDecrement = (item: cartItemType) => {
         {cartItems.map((item: cartItemType, index:number) => (
           <CartItem key={index} title={item.item.name} quantity={item.quantity}  price={item.item.price} />
         ))}
-        <Button color={ButtonColor.CLAY} size={ButtonSize.REGULAR} onClick={() => handleIncrement(cartItems[0])}>+</Button>
-        <Button color={ButtonColor.CLAY} size={ButtonSize.REGULAR} onClick={() => handleDecrement(cartItems[0])}>-</Button>
+        <Button color={ButtonColor.CLAY} size={ButtonSize.REGULAR} onClick={() => handleIncrement(cartItems[0])}> + </Button>
+        <Button color={ButtonColor.CLAY} size={ButtonSize.REGULAR} onClick={() =>  handleDecrement(cartItems[0])}> - </Button>
       </ul>
       <span className="cart-space"></span>
         <PriceBox price={totalPrice} />
