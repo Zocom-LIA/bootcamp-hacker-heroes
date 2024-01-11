@@ -6,12 +6,9 @@ import { Button, ButtonColor, ButtonSize } from '@zocom/button';
 import { useNavigate } from 'react-router-dom'
 import { useSelector } from "react-redux";
 import "./styles.scss"
-
 import cartSimple from '../../../shared/cart-simple.svg'
-
 import { cartItemType } from "@zocom/types";
 import { RootState } from "../../../../src/redux/store";
-import cartSimple from '../../../shared/cart-simple.svg'
 import { useDispatch } from "react-redux";
 import { updateQuantity } from "../../../../src/redux/slices/cartSlice";
 
