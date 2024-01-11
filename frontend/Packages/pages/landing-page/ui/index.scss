@@ -13,11 +13,10 @@
     color: $color-text-primary; 
     font-family:var(--font-family);
     height: 100%;
-    padding: $padding;
 }
 
 .menu_title {
     @include fontsizeXLarge;
     text-shadow: textShadow(); 
-    padding: $padding 0;
+    padding: $padding;
 }

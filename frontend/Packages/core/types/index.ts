@@ -28,10 +28,7 @@ export type menu = {
     dip: dipItemType[],
 }
 export type cartItemType = {
-    id: string;
-    name: string;
-    price: number;
-    desc: string;
+    item: wontonsItemType;
     quantity: number;
   };
   

@@ -16,18 +16,19 @@ type dipItem = {
     price: number;
     isDip?: boolean;
     dip?: dipItem[];
+    onClick?: () => void;
 };
 
 
 
 
-export const MenuItem:FC<MenuItemProps> = ({name, desc, ingredients, price,isDip=false,dip} ) => {
+export const MenuItem:FC<MenuItemProps> = ({name, desc, ingredients, price,isDip=false,dip,onClick} ) => {
 
   //rendering the ingredients as a list separated by comma
   const ingredientsList = ingredients?.map((ingredient,index) => ingredient + (index < ingredients.length - 1 ? ", " : "")) ;
 
   return (
-    <section className="menu_item">
+    <section className="menu_item" onClick={onClick}>
       <section className="menu_item-header">
         <h2 className="menu_item-title">{name}</h2>
         <span className="menu_item-space"></span>
