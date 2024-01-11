@@ -4,8 +4,6 @@ import {Header} from "@zocom/header";
 
 import logo from '../../../shared/logo.png'
 import cartSimple from '../../../shared/cart-simple.svg'
-
-
 import { dipItemType, wontonsItemType } from "@zocom/types";
 import { useEffect, useState } from "react";
 import { useData } from "../data/index";
