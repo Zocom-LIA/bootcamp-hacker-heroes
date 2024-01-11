@@ -1,13 +1,11 @@
 import "./style.scss";
 import { FC } from 'react';
 import {Button} from "@zocom/button";
-import { StyleTypes } from '@zocom/types';
+import { StyleTypes, dipItemType } from '@zocom/types';
+import { useDispatch } from 'react-redux';
+import { addToCart } from "../../../../src/redux/slices/cartSlice";
 
-type dipItem = {
-    name: string;
-    price: number;
-    desc?: string;
-};
+
 
  type MenuItemProps = {
     name: string;
@@ -15,7 +13,7 @@ type dipItem = {
     ingredients?: string[];
     price: number;
     isDip?: boolean;
-    dip?: dipItem[];
+    dip?: dipItemType[];
     onClick?: () => void;
 };
 
@@ -26,7 +24,15 @@ export const MenuItem:FC<MenuItemProps> = ({name, desc, ingredients, price,isDip
 
   //rendering the ingredients as a list separated by comma
   const ingredientsList = ingredients?.map((ingredient,index) => ingredient + (index < ingredients.length - 1 ? ", " : "")) ;
+  const dispatch = useDispatch() ;
 
+  const addDipToCart = (item:dipItemType) => {
+    const cartItem = {
+      item,
+      quantity: 1,
+    };
+    dispatch(addToCart(cartItem));
+  };
   return (
     <section className="menu_item" onClick={onClick}>
       <section className="menu_item-header">
@@ -44,7 +50,7 @@ export const MenuItem:FC<MenuItemProps> = ({name, desc, ingredients, price,isDip
           dip.map((dipItem, index) => (
             <Button
               key={index}
-              onClick={() => console.log(dipItem)}
+              onClick={() => addDipToCart(dipItem)}
               style={StyleTypes.LIGHT}
             >
               {dipItem.name}

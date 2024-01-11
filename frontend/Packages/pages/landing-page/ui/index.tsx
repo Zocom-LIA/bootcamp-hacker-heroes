@@ -27,6 +27,7 @@ export function LandingsPage() {
   }
 
   useEffect(() => {
+    // get the menu from the api
     setIsLoading(true);
     getWontonsMenu().then((res) => {
       setWontons(res ? res:null);
@@ -35,7 +36,7 @@ export function LandingsPage() {
       });
       
     });
-
+    
     getDipsMenu().then((res)=> {
       setDipItems(res ? res:null ); 
       res && res.forEach(item => {
@@ -52,32 +53,33 @@ export function LandingsPage() {
         <main className="menu_container">
           <h1 className="menu_title">MENY</h1>
           <section className="menu_products">
-            
-          {/* render the wantons */}
-          {isLoading ? <p>Loading...</p> : null}
-          {!isLoading && wontons && wontons.length > 0 ? wontons.map((item, index) => (
-              <MenuItem
-                key={index}
-                name={item.name}
-                desc={item.desc}
-                ingredients={item.ingredients}
-                price={item.price}
-                onClick={()=> addItemToCart(item)}
-              />
-            ))
-            : null
-            }
+            {/* render the wantons */}
+            {isLoading ? <p>Loading...</p> : null}
+            {!isLoading && wontons && wontons.length > 0
+              ? wontons.map((item, index) => (
+                  // Wonton menu item component
+                  <MenuItem
+                    key={index}
+                    name={item.name}
+                    desc={item.desc}
+                    ingredients={item.ingredients}
+                    price={item.price}
+                    onClick={() => addItemToCart(item)}
+                  />
+                ))
+              : null}
 
-            
             {/* render the dips */}
-           {!isLoading && dipItems &&  dipItems.length > 0 ?  <MenuItem
+            {!isLoading && dipItems && dipItems.length > 0 ? (
+
+              //dip menu item component
+              <MenuItem
                 name={"Dipsås"}
                 price={19}
                 isDip={true}
-                dip= {dipItems}
+                dip={dipItems}
               />
-              : null
-            }
+            ) : null}
           </section>
         </main>
       </section>
