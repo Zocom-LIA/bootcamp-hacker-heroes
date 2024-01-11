@@ -4,7 +4,8 @@ import { ReactNode } from 'react';
 
 export enum ButtonSize {
     'REGULAR' = 'regular',
-    'STRETCH' = 'stretch'
+    'STRETCH' = 'stretch',
+    'ROUND' = 'round'
 }
 
 export enum ButtonColor {
