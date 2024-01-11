@@ -10,7 +10,8 @@ export enum ButtonSize {
 
 export enum ButtonColor {
     'CLAY' = 'clay',
-    'DARK-MINT' = 'dark-mint'
+    'DARK-MINT' = 'dark-mint',
+    'DARKGREY' = 'darkgrey'
 }
 
 type ButtonProps = {

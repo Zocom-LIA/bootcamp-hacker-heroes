@@ -18,6 +18,10 @@
     background-color: $dark-mint;
     border: solid $snow;
 }
+.btn--darkgrey {
+    background-color: $shade-24-dark;
+    border: solid $snow;
+}
 
 .btn--stretch {
     width: 100%;
@@ -29,5 +33,6 @@
     width: 36px;
     height: 36px;
     @include fontsizeLarge;
+    color: black;
     
 }
