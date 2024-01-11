@@ -1,12 +1,18 @@
 import "./index.scss"; 
 import {MenuItem} from "@zocom/menuitem";
 import {Header} from "@zocom/header";
+
+import logo from '../../../shared/logo.png'
+import cartSimple from '../../../shared/cart-simple.svg'
+
+
 import { dipItemType, wontonsItemType } from "@zocom/types";
 import { useEffect, useState } from "react";
 import { useData } from "../data/index";
 import { useDispatch } from "react-redux";
 import { addDip, addWonton } from "../../../../src/redux/slices/menuSlice";
 import { addToCart } from "../../../../src/redux/slices/cartSlice";
+
 
 
 export function LandingsPage() {
@@ -49,7 +55,7 @@ export function LandingsPage() {
    
     return (
       <section className="landingPage">
-        <Header title="Header  " />
+        <Header logo={logo} cart={cartSimple}  />
         <main className="menu_container">
           <h1 className="menu_title">MENY</h1>
           <section className="menu_products">

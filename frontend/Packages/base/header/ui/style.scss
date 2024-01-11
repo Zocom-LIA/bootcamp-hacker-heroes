@@ -1,14 +1,19 @@
 @use '@zocom/styles' as *;
 
 
-header {
-    display: flex;
+
+.header {
+    @include row;
     justify-content: space-between;
-    align-items: center;
-    padding: $gap;
+    width: 100%;
 }
 
-img {
-    height: $base * 4;
-    width: auto;
+.cart-frame {
+    width: 64px;
+    height: 64px;
+    background-color: $snow;
+    border-radius: 4px;
 }
+
+.cart {
+    margin: 1rem;
