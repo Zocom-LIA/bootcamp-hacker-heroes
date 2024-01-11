@@ -7,12 +7,12 @@ import { db } from '@zocom/services';
 const getOrderHandler: APIGatewayProxyHandler = async (event) => {
  
   const requestBody = JSON.parse(event.body);
-  const { userId, orderId } = requestBody;
+  const { orderId } = requestBody;
 
-  if (!orderId || !userId) {
+  if (!orderId) {
     return {
       statusCode: 400,
-      body: JSON.stringify({ error: 'Both orderNr and userId are required in the query parameters' }),
+      body: JSON.stringify({ error: 'orderNr is required in the query parameters' }),
     };
   }
 
@@ -20,8 +20,8 @@ const getOrderHandler: APIGatewayProxyHandler = async (event) => {
     TableName: "YumYumDB",
     KeyConditionExpression: 'PK = :pk AND SK = :sk',
     ExpressionAttributeValues: {
-      ':pk': `User#${userId}`,
-      ':sk': `order#${orderId}`,
+      ':pk': `Kitchen`,
+      ':sk': `Order#${orderId}`,
     },
   };
 
