@@ -3,6 +3,18 @@
 
 .header {
     @include row;
+    justify-content: space-between;
     width: 100%;
+}
+
+.cart-frame {
+    width: 64px;
+    height: 64px;
+    background-color: $snow;
+    border-radius: 4px;
+}
+
+.cart {
+    margin: 1rem;
 }
 

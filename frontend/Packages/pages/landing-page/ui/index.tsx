@@ -2,6 +2,8 @@ import "./index.scss";
 import {MenuItem} from "@zocom/menuitem";
 import {Header} from "@zocom/header";
 import logo from '../../../shared/logo.png'
+import cartSimple from '../../../shared/cart-simple.svg'
+
 
 
 export function LandingsPage() {
@@ -109,7 +111,7 @@ export function LandingsPage() {
 
     return (
       <section className="landingPage">
-        <Header logo={logo}  />
+        <Header logo={logo} cart={cartSimple}  />
         <main className="menu_container">
           <h1 className="menu_title">MENY</h1>
           <section className="menu_products">

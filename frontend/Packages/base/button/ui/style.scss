@@ -41,9 +41,6 @@
     background-color: $coal;
     color: $snow;
     font-family: 'Fira Sans', sans-serif;
-    @include fontsizeLarge;
-    width: 100%;
-    padding: $padding-large;
 }
 
 .btn--clay {
@@ -54,4 +51,10 @@
 .btn--dark-mint {
     background-color: $dark-mint;
     border: solid $snow;
+}
+
+.btn--stretch {
+    width: 100%;
+    @include fontsizeLarge;
+    padding: $padding-large;
 }

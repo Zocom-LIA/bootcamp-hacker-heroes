@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { Header } from '@zocom/header';
 import boxtop from '../../../shared/boxtop.svg';
 import logo from '../../../shared/logo.png'
-import { Button, ButtonColor } from '@zocom/button'
+import { Button, ButtonColor, ButtonSize } from '@zocom/button'
 
 export const OrderDonePage = () => {
     const navigate = useNavigate();
@@ -15,8 +15,8 @@ export const OrderDonePage = () => {
                 <h1 className='order-status'>DINA WOTONS ÄR KLARA!</h1> 
                 <p className='order-nr'>#4kjwsdf234k</p>
             </main>
-            <Button onClick={() => navigate('/')}>BESTÄLL MER</Button>
-            <Button color={ButtonColor['DARK-MINT']} onClick={() => navigate('/receipt')}>SE KVITTO</Button>
+            <Button size={ButtonSize.STRETCH} onClick={() => navigate('/')}>BESTÄLL MER</Button>
+            <Button size={ButtonSize.STRETCH} color={ButtonColor['DARK-MINT']} onClick={() => navigate('/receipt')}>SE KVITTO</Button>
         </div>
     )
 }
