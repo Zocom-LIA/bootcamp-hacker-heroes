@@ -1,144 +1,91 @@
 import "./index.scss"; 
 import {MenuItem} from "@zocom/menuitem";
 import {Header} from "@zocom/header";
+
 import logo from '../../../shared/logo.png'
 import cartSimple from '../../../shared/cart-simple.svg'
 
 
+import { dipItemType, wontonsItemType } from "@zocom/types";
+import { useEffect, useState } from "react";
+import { useData } from "../data/index";
+import { useDispatch } from "react-redux";
+import { addDip, addWonton } from "../../../../src/redux/slices/menuSlice";
+import { addToCart } from "../../../../src/redux/slices/cartSlice";
+
+
 
 export function LandingsPage() {
+   const [wontons, setWontons] = useState<wontonsItemType[] | null>([]);
+   const [dipItems, setDipItems] = useState<dipItemType[] | null>([]);
+   const [isLoading, setIsLoading] = useState<boolean>(true);
+   const {getWontonsMenu,getDipsMenu} = useData();
+   const dispatch = useDispatch(); 
+   
 
-   let wantons = [
-    {
-       "name":"Karlstad",
-       "desc":"En god friterad wonton med smaker från de värmländska skogarna.",
-       "ingredients":[
-          "kantarell",
-          "scharlottenlök",
-          "morot",
-          "bladpersilja"
-       ],
-       "price":9
-    },
-    {
-       "name":"Bangkok",
-       "desc":"En god friterad wonton med smaker från Bangkoks gator.",
-       "ingredients":[
-          "morot",
-          "salladslök",
-          "chili",
-          "kokos",
-          "lime",
-          "koriander"
-       ],
-       "price":9
-    },
-    {
-       "name":"Ho Chi Minh",
-       "desc":"En god friterad wonton med smaker från vietnams matkultur.",
-       "ingredients":[
-          "kål",
-          "morot",
-          "salladslök",
-          "chili",
-          "vitlök",
-          "ingefära",
-          "tofu"
-       ],
-       "price":9
-    },
-    {
-       "name":"Paris",
-       "desc":"En god friterad wonton med smaker från det franska köket.",
-       "ingredients":[
-          "kål",
-          "honung",
-          "chevré",
-          "basilika",
-          "valnötspasta"
-       ],
-       "price":9
-    },
-    {
-       "name":"Oaxaca",
-       "desc":"En god friterad wonton med smaker från mexicos kryddiga matkultur.",
-       "ingredients":[
-          "majs",
-          "tomat",
-          "rostade ärtor",
-          "vitlök",
-          "lime"
-       ],
-       "price":9
+
+  const addItemToCart = (item: wontonsItemType) => {
+    const cartItem = {
+      item,
+      quantity: 1,
     }
- ];
+    dispatch(addToCart(cartItem));  
+  }
 
-
-   let dipItems = [
-    {
-       "name":"Sweet Chili",
-       "desc":"Stark och söt dip från Thailänska höglandet.",
-       "price":19
-    },
-    {
-       "name":"Sweet n Sour",
-       "desc":"Klassiska sötsura dipsåsen från Kina.",
-       "price":19
-    },
-    {
-       "name":"Guacamole",
-       "desc":"Avocado, tomat och kryddor i optimal kombination.",
-       "price":19
-    },
-    {
-       "name":"Wonton Standard",
-       "desc":"Smaksatt olja med soya, chili, vitlök & ingefära.",
-       "price":19
-    },
-    {
-       "name":"Hot Mango",
-       "desc":"Kryddstark och söt chunky mangodip.",
-       "price":19
-    },
-    {
-       "name":"Chili Mayo",
-       "desc":"Egengjord majonäs smaksatt med chili.",
-       "price":19
-    }
- ]
+  useEffect(() => {
+    // get the menu from the api
+    setIsLoading(true);
+    getWontonsMenu().then((res) => {
+      setWontons(res ? res:null);
+      res && res.forEach(item => {
+        dispatch(addWonton(item));
+      });
+      
+    });
     
+    getDipsMenu().then((res)=> {
+      setDipItems(res ? res:null ); 
+      res && res.forEach(item => {
+        dispatch(addDip(item));
+      });
+    });
+    setIsLoading(false);
+  }, []);
 
-
+   
     return (
       <section className="landingPage">
         <Header logo={logo} cart={cartSimple}  />
         <main className="menu_container">
           <h1 className="menu_title">MENY</h1>
           <section className="menu_products">
-            
-          {/* render the wantons */}
-          {wantons.length > 0 ? wantons.map((item, index) => (
-              <MenuItem
-                key={index}
-                name={item.name}
-                desc={item.desc}
-                ingredients={item.ingredients}
-                price={item.price}
-              />
-            ))
-            : null
-            }
+            {/* render the wantons */}
+            {isLoading ? <p>Loading...</p> : null}
+            {!isLoading && wontons && wontons.length > 0
+              ? wontons.map((item, index) => (
+                  // Wonton menu item component
+                  <MenuItem
+                    key={index}
+                    name={item.name}
+                    desc={item.desc}
+                    ingredients={item.ingredients}
+                    price={item.price}
+                    onClick={() => addItemToCart(item)}
+                  />
+                ))
+              : null}
 
-            
             {/* render the dips */}
-           { dipItems.length > 0 ?  <MenuItem
+            {!isLoading && dipItems && dipItems.length > 0 ? (
+
+              //dip menu item component
+              <MenuItem
                 name={"Dipsås"}
                 price={19}
                 isDip={true}
-                dip= {dipItems}
+                dip={dipItems}
               />
-              : null
-            }
+            ) : null}
           </section>
         </main>
       </section>

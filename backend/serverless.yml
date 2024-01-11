@@ -4,9 +4,10 @@ frameworkVersion: '3'
 provider:
   name: aws
   runtime: nodejs18.x
+  profile: ${env:PROFILE}
   region: eu-north-1
-  iam:
-    role: ${env:LAMBDA_ROLE}
+  # iam:
+  #   role: ${env:LAMBDA_ROLE}
   deploymentMethod: direct
 
 useDotenv: true  
@@ -40,14 +41,20 @@ functions:
     handler: functions/getOrder/index.handler
     events:
       - httpApi:
-          path: '/api/orders'
-          method: GET 
+          path: '/api/orders/kvitto'
+          method: POST 
   postOrder:
     handler: functions/postOrder/index.handler
     events:
       - httpApi:
           path: '/api/orders'
           method: POST
+  updateOrder:
+    handler: functions/updateOrder/index.handler
+    events:
+      - httpApi:
+          path: '/api/orders'
+          method: PATCH
 
 resources:
   Resources:

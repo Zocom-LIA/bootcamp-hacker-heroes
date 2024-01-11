@@ -1,6 +1,7 @@
 @use '@zocom/styles' as *;
 
 
+
 .header {
     @include row;
     justify-content: space-between;
@@ -16,5 +17,3 @@
 
 .cart {
     margin: 1rem;
-}
-

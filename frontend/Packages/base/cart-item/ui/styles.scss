@@ -1,0 +1,40 @@
+@use '@zocom/styles' as *;
+
+
+.cart-items {
+
+    padding: $padding 0 ;  
+    
+}
+    
+
+
+   
+   .cart-item {
+    border-bottom: 1px solid ;
+    font-family: 'Fira Sans', sans-serif;
+    @include fontsizeLarge;
+    
+   }
+   
+   .cart-item__title {
+    gap: $gap;
+    
+   }
+
+   
+   .cart-item__price {
+    display: flex;
+    justify-content: flex-end;
+    
+    
+    
+   }
+   .cart-item__space{
+    display: flex;
+    border-bottom: $radius-tier-3 dotted;
+    
+    
+}
+   
+    
