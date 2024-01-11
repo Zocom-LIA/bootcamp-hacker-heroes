@@ -19,7 +19,11 @@ export function LandingsPage() {
 
 
   const addItemToCart = (item: wontonsItemType) => {
-    dispatch(addToCart(item));
+    const cartItem = {
+      item,
+      quantity: 1,
+    }
+    dispatch(addToCart(cartItem));  
   }
 
   useEffect(() => {
