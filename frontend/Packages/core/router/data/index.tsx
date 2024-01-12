@@ -5,6 +5,8 @@ import { EtaPage } from "@zocom/eta-page";
 import { OrderDonePage } from "@zocom/order-done-page"
 import { SummaryPage } from "@zocom/summary-page" ;
 import { ReceiptPage } from "@zocom/receipt-page"
+import { KitchenView } from "@zocom/kitchen" ;
+
 
 const router = createBrowserRouter([
     {
@@ -30,6 +32,10 @@ const router = createBrowserRouter([
     {
         path:"/done",
         element: <OrderDonePage/>
+    },
+    {
+        path:"/kitchen",
+        element: <KitchenView/>
     }
 ]);
 

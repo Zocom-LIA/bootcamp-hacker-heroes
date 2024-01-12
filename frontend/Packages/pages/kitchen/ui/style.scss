@@ -1,3 +1,35 @@
 @use "@zocom/styles" as *; 
 
 
+.kitchen_view {
+    text-shadow: textShadow();
+    font-family: font-family();
+    background-color: $color-background-secondery;
+    height:100svh;
+    color: $color-text-primary;
+
+}
+
+.kitchen_view .header {
+    justify-content: flex-start;
+    align-items: center;
+    padding: $padding-large;
+}
+
+.kitchen_maincontainer {
+    @include row; 
+    gap: $gap-large;
+    padding: $padding-large;
+    text-transform: uppercase;
+    font-weight: 700;
+
+}
+
+.kitchen_ongoing,
+.kitchen_done {
+    @include column;
+    gap: $gap-large;
+    align-items: flex-start;
+    flex: 1;
+}
+

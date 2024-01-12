@@ -2,11 +2,16 @@
 :root {
     --font-family: 'Fira Sans', sans-serif;
 }
+
 $base: 16px;
 
 @function textShadow() {
     $px: calc($base * 0.1);
     @return  $px  $px $px rgba(0, 0, 0, 0.4);
+}
+
+@function font-family() {
+    @return  'Fira Sans', sans-serif;
 }
 
 @mixin fontsizeXLarge {

@@ -1,0 +1,64 @@
+@use "@zocom/styles" as *;
+
+
+
+.order_card{
+    border-radius: $radius-tier-2;
+    background-color: $bacon;
+    padding: $padding-sml;
+    @include column;
+    color: $color-text-secondery;
+    text-shadow: none;
+    @include fontsizeTiny;
+    font-weight: 600;
+    button {
+        @include fontsizeSmall;
+        padding: $padding-sml;
+        background-color: $color-background-button-alert;
+    }
+}
+
+.order_card-ordernumber{
+    @include fontsizeSmall;
+    padding: $padding-sml;
+
+}
+.order_card-items {
+    padding-bottom: $padding-nano;
+    border-bottom: $radius-tier-3 dotted $color-text-secondery;
+}
+.order_card-item {
+    @include row;
+    justify-content: space-between;
+    flex: 1;
+
+    
+    .order_card-item-info{
+        @include row;
+        justify-content: space-between;
+        .order_card-item-quantity{
+            justify-self: flex-end;
+
+        }
+
+    }
+}
+
+.order_card-item-space{
+        border-bottom: $radius-tier-3 dotted $color-text-secondery;
+        flex: 1;
+}
+
+.order_card-totalPrice {
+    align-self: flex-end;
+
+}
+.order_card-orderTime {
+    margin: $margin-sml;
+    background-color: $shade-24-dark;
+    width: 100%;
+    text-align: center;
+    padding: $padding-sml;
+}
+
+
