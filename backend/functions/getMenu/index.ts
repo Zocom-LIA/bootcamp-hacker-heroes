@@ -48,7 +48,6 @@ async function getMenuItems(path) {
 export const handler = async (event: APIGatewayProxyEventV2): Promise<APIGatewayProxyStructuredResultV2> => {
     const path = event.pathParameters.search;
     try {
-        console.log(path);
         return getMenuItems(path);
     } catch (error) {
         return sendResponse(400, { success: false, error: "Bad request" });
