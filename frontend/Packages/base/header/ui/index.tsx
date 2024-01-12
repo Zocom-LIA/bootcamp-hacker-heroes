@@ -18,7 +18,7 @@ type HeaderProps = {
 export const Header = ({ logo, title, cart }: HeaderProps) => {
     return (
         <header className="header">
-            <img className='logo' src={logo} alt="" />
+            <img className='logo' src={logo} alt="" /> 
             <h1 className="header__title">{title}</h1>
             {path === '/' || path === '/cart' ? (
                 

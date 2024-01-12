@@ -8,6 +8,12 @@
     width: 100%;
 }
 
+.header__title{
+    text-transform:uppercase ;
+    @include fontsizeXLarge; 
+    font-family: font-family();
+    
+}
 .cart-frame {
     width: 64px;
     height: 64px;
