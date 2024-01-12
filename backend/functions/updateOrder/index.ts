@@ -6,7 +6,6 @@ import { APIGatewayProxyEventV2, APIGatewayProxyStructuredResultV2 } from 'aws-l
 import { validateSchema } from '@zocom/services';
 
 
-
 async function updateOrder(orderId: string) {
     try {
 
@@ -41,11 +40,6 @@ async function updateOrder(orderId: string) {
     return sendResponse(500, { success: false, error: 'Internal server error' });
    }
 }
-
-
-
-
-
 
 const handlerFunction = async (event: APIGatewayProxyEventV2): Promise<APIGatewayProxyStructuredResultV2> => {
     try {
