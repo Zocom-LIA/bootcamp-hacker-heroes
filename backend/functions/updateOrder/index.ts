@@ -3,23 +3,10 @@ import {db} from '@zocom/services';
 import Joi from 'joi';
 import middy from '@middy/core';
 import { APIGatewayProxyEventV2, APIGatewayProxyStructuredResultV2 } from 'aws-lambda';
+import { validateSchema } from '@zocom/services';
 
 
-
-
-export function validateSchema(schema) {
-    return {
-      before: async (request) => {
-        try {
-          await schema.validateAsync(JSON.parse(request.event.body));
-        } catch (error) {
-          return sendResponse(400, {error: error});
-        }
-      },
-    };
-  }
-
-async function updateOrder(orderId: string, userId : string) {
+async function updateOrder(orderId: string) {
     try {
 
         const dbControl = await db.get({
@@ -54,16 +41,11 @@ async function updateOrder(orderId: string, userId : string) {
    }
 }
 
-
-
-
-
-
 const handlerFunction = async (event: APIGatewayProxyEventV2): Promise<APIGatewayProxyStructuredResultV2> => {
     try {
         const requestBody = JSON.parse(event.body);
-        const { userId, orderId } = requestBody;
-        return updateOrder(orderId, userId);
+        const { orderId } = requestBody;
+        return updateOrder(orderId);
     } catch (error) {
         console.error('Error json parse', error);
         return sendResponse(400, { success: false, error: 'Bad request' });

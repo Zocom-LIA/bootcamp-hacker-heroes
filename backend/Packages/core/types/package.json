@@ -1,0 +1,4 @@
+{
+    "name": "@backend/types",
+    "main": "./index.ts"
+}

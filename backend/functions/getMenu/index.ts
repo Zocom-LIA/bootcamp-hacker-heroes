@@ -2,8 +2,9 @@ import { sendResponse } from '@zocom/responses';
 import {db} from '@zocom/services';
 import { APIGatewayProxyEventV2, APIGatewayProxyStructuredResultV2 } from 'aws-lambda';
 
-
-async function getMenuItems(path) {
+//the path is temporary using a if statement, this will be changed when we decide how to use the get statement and use one of the variants to implement it.
+//The other variant will be removed.
+async function getMenuItems(path: string) {
     if (path == ""){
     const params = {
         TableName: "YumYumDB",
@@ -48,7 +49,6 @@ async function getMenuItems(path) {
 export const handler = async (event: APIGatewayProxyEventV2): Promise<APIGatewayProxyStructuredResultV2> => {
     const path = event.pathParameters.search;
     try {
-        console.log(path);
         return getMenuItems(path);
     } catch (error) {
         return sendResponse(400, { success: false, error: "Bad request" });

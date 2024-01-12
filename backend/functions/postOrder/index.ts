@@ -4,52 +4,13 @@ import middy from '../../node_modules/@middy/core';
 import Joi from 'joi';
 import { APIGatewayProxyEventV2, APIGatewayProxyStructuredResultV2 } from 'aws-lambda';
 import {randomUUID} from 'crypto' 
-
-type OrderType = {
-  PK: string,
-  SK: string,
-  orderItems: {
-    name: string,
-    desc?: string,
-    ingredients?: string[],
-    price: number,
-  }[],
-  customerName: string,
-  totalPrice: number,
-  orderNr: number,
-  orderId: string,
-  status: string,
-  eta: string,
-}
-
-const currentDate = new Date();
-
-const timeOffset = 1; // CET offset in hours, need to adjust for daylight savings
-currentDate.setHours(currentDate.getHours() + timeOffset);
-
-const hourstamp = `${currentDate.toISOString().slice(11, 19)}`;
-const milliseconds = String(currentDate.getMilliseconds()).padStart(4, '0'); 
-
-const timestamp = `${currentDate.toISOString().slice(0, 19)}:${milliseconds}`;
-
-
-//the above will be moved to it's own package.
-
-export function validateSchema(schema) {
-  return {
-    before: async (request) => {
-      try {
-        await schema.validateAsync(JSON.parse(request.event.body));
-      } catch (error) {
-        return sendResponse(400, {error: error});
-      }
-    },
-  };
-}
+import { validateSchema, timeStamp, hourStamp } from '@zocom/services';
+import { OrderType } from '@backend/types';
 
 async function orderConstructor(requestBody){
+  
   const userId = requestBody.userId || randomUUID();
-  const orderId = timestamp;
+  const orderId = timeStamp();
   const totalPrice = requestBody.orderItems.reduce((total, item) => total + item.price, 0);
 
   function generateFiveDigitRandom() {
@@ -63,7 +24,7 @@ async function orderConstructor(requestBody){
     "orderItems": requestBody.orderItems,
     "customerName": requestBody.customerName || "guest",
     "totalPrice": totalPrice,
-    "orderPlaced": hourstamp,
+    "orderPlaced": hourStamp(),
     "status": "active",
     "orderNr": orderNr,
     "userId": userId,
@@ -72,7 +33,7 @@ async function orderConstructor(requestBody){
   return order
 }
 
-async function postMenu(order) {
+async function postMenu(order: OrderType) {
    try {
     const params = {
         TableName: "YumYumDB",
@@ -106,14 +67,8 @@ export const OrderSchema = Joi.object({
   customerName: Joi.string().min(3).max(200).optional(),
 });
 
-//can use a timestamp query that only checks the current date in getOrder.
 
 export const handler = middy()
 .use (validateSchema(OrderSchema))
 .handler(handlerFunction)
 
-//design will be PK User#username
-//then SK will be #Profile#username which holds all userinfo
-//then each PK User#username will store the orders 
-//like this in the SK, ORDER#XXXXXX then orderdata has 
-//username orderid etc

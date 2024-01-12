@@ -40,7 +40,7 @@ Items are added one by one, so the first setup will be a bit menial, but in the 
 SendOrder: 
 The concept is that each order is made by an user whom have their own userId, and then stored under the users collection with order#timestamp, guests have random uuid.
 
-The above has been simplified as it doesn't take into consideration how the kitchen will retrieve all the orders. If we implement the above the kitchen orders and the above will be stored separately with their own primary keys.
+The above has been simplified as it doesn't take into consideration how the kitchen will retrieve all the orders. If we implement the above the kitchen orders and the above will be stored separately with their own primary keys. A solution would be to have a GSI that only saved the orders meant for the kitchen.
 
 json example
 
@@ -65,7 +65,7 @@ Simple function that changes status from active to finished when sent. The idea 
 To expand on this we can have a sort that only checks the datestamp of the current day to get relevant orders.
 
 {
-	"orderId": "2024-08-08:1245"
+	"orderId": "2024-08-08T:1245"
 }
 
 GetKitchenOrder:
@@ -74,4 +74,8 @@ Under construction but the concept is that it will get all the orders that have 
 
 GetOrderKvitto:
 
-Eta can maybe be handled here, where based on the amount of active orders a minute is added per order.
+Eta can maybe be handled here, where based on the amount of active orders a minute is added per order. Functions the same as updateOrder
+
+{
+	"orderId": "2024-08-08T:1245"
+}

@@ -2,7 +2,7 @@ import { APIGatewayProxyHandler } from 'aws-lambda';
 import middy from '../../node_modules/@middy/core';
 import httpErrorHandler from '../../node_modules/@middy/http-error-handler';
 import { db } from '@zocom/services';
-
+import { dateStamp } from '@zocom/services';
 const getOrderHandler: APIGatewayProxyHandler = async () => {
  
 
@@ -11,7 +11,7 @@ const getOrderHandler: APIGatewayProxyHandler = async () => {
     KeyConditionExpression: 'PK = :pkVal AND begins_with(SK, :skVal)',
     ExpressionAttributeValues: {
       ':pkVal': "Kitchen",
-      ':skVal': "Order",
+      ':skVal': `Order#${dateStamp()}`,
     },
   };
 

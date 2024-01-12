@@ -3,7 +3,8 @@ import {createBrowserRouter, RouterProvider} from "react-router-dom" ;
 import { LandingsPage } from "@zocom/landing-page" ;
 import { EtaPage } from "@zocom/eta-page";
 import { OrderDonePage } from "@zocom/order-done-page"
-import { SummaryPage } from "@zocom/summary-page" ;
+import { SummaryPage } from "@zocom/summary-page" ;
+import { ReceiptPage } from "@zocom/receipt-page"
 
 const router = createBrowserRouter([
     {
@@ -24,7 +25,7 @@ const router = createBrowserRouter([
     },
     {
         path:"/receipt",
-        element: <p>RECEIPT</p>
+        element: <ReceiptPage/>
     },
     {
         path:"/done",

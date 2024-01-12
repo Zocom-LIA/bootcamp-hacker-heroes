@@ -1,29 +1,10 @@
 import { sendResponse } from '@zocom/responses';
 import {db} from '@zocom/services';
-import middy from '../../node_modules/@middy/core';
+import middy from '@middy/core';
 import Joi from 'joi';
 import { APIGatewayProxyEventV2, APIGatewayProxyStructuredResultV2 } from 'aws-lambda';
-
-type MenuType = {
-  PK: string | number,
-  SK: string,
-  name: string,
-  desc: string,
-  ingredients: string[],
-  price: number
-}
-
-export function validateSchema(schema) {
-  return {
-    before: async (request) => {
-      try {
-        await schema.validateAsync(JSON.parse(request.event.body));
-      } catch (error) {
-        return sendResponse(400, {error: error});
-      }
-    },
-  };
-}
+import { MenuType } from '@backend/types';
+import { validateSchema } from '@zocom/services';
 
 async function postMenu(menu: MenuType) {
    try {
@@ -34,13 +15,12 @@ async function postMenu(menu: MenuType) {
     await db.put(params).promise();
     return sendResponse(200, { success: true } );
    } catch (error) {
-    return sendResponse(500, { success: false, error: 'Internal server error' });
+    return sendResponse(500, { success: false, error: 'Internal server errors' });
    }
 }
 
 const handlerFunction = async (event: APIGatewayProxyEventV2): Promise<APIGatewayProxyStructuredResultV2> => {
     try {
-        console.log(event)
         const requestBody = JSON.parse(event.body);
         return postMenu(requestBody);
     } catch (error) {
