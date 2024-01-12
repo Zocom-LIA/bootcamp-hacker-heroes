@@ -51,7 +51,7 @@ type orderProp = {
 
 
 export const KitchenOrderCard:FC<orderProp>  = ({order}) => {
-
+    
 
     
     return (
