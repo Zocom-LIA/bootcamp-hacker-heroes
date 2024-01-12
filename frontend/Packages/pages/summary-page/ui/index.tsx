@@ -11,7 +11,7 @@ import { cartItemType } from "@zocom/types";
 import { RootState } from "../../../../src/redux/store";
 import { useDispatch } from "react-redux";
 import { updateQuantity } from "../../../../src/redux/slices/cartSlice";
-
+import { cartItemSend, orderItemsFormatted } from "../data/index";
 
 export function SummaryPage () {
  const navigate = useNavigate();
@@ -24,6 +24,16 @@ export function SummaryPage () {
 };
 const handleDecrement = (item: cartItemType) => {
   dispatch(updateQuantity({ SK: item.item.SK, quantity: item.quantity -1 }));
+};
+
+const handleOrderButtonClick = async () => {
+  try {
+    await cartItemSend().SendOrder(orderItemsFormatted);
+    console.log('Order sent successfully!');
+    navigate('/eta'); 
+  } catch (error) {
+    console.error('Failed to send order:', error);
+  }
 };
 
    
@@ -40,8 +50,9 @@ const handleDecrement = (item: cartItemType) => {
       </ul>
       <span className="cart-space"></span>
         <PriceBox price={totalPrice} />
-        <Button size={ButtonSize.STRETCH} color={ButtonColor.CLAY} onClick={() => navigate('/eta')}>TAKE MY MONEY!</Button>
-
+        <Button size={ButtonSize.STRETCH} color={ButtonColor.CLAY} onClick={handleOrderButtonClick}>
+      TAKE MY MONEY!
+    </Button>
         
       </div>
       
