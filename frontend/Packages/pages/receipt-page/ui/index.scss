@@ -4,12 +4,29 @@
     padding: $padding;
     background-color: $clay;
     @include column;
+    justify-content: space-between;
+    font-family:var(--font-family);
 }
 
 .receipt-container {
     background-color: $snow;
     width: 100%;
-    height: 100%;
+    height: auto;
     @include column;
+    padding-top: $padding-huge;
+    border-radius: $radius-tier-2;
+    gap: $gap-sml;
 }
 
+.receipt-title {
+    @include fontsizeLarge;
+    color: $color-text-secondery;
+    text-shadow: textShadow();
+}
+
+.order-nr {
+    color: $color-text-tertiary;
+    @include fontsizeTiny;
+    
+    font-weight: bold;
+}
