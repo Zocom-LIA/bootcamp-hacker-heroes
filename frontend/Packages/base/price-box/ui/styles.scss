@@ -1,34 +1,51 @@
 @use '@zocom/styles' as *;
 @import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@200;400;600;700&display=swap');
 
-.price-box {
+
+.container {
     width: 100%;
+}
+.price-box {
     padding: $padding-sml;
     background-color: $shade-24-dark;
     border-radius: $radius-tier-2;
     font-family: 'Fira Sans', sans-serif;
     border: solid $snow;
-    
-
-    h3 {
-
-        @include fontsizeLarge;
-    }
-
-    p {
-
-        @include fontsizeLarge;
-    }
-
-    .price {
-        display: flex;
-        @include fontsizeXLarge;
-        
-        justify-content: flex-end;
-    }
-    
+    @include row;
+    justify-content: space-between;
 }
 
-.container {
-    width: 100%;
+.cart-total {
+    @include fontsizeLarge;
+    font-weight: bold;
 }
+
+.cart-moms {
+    @include fontsizeSmall;
+}
+
+.cart-price {
+    @include fontsizeXLarge;
+    font-weight: bold;
+    @include row;
+    align-items: center;
+}
+
+.receipt-total {
+    @include fontsizeRegular;
+    font-weight: bold;
+}
+
+.receipt-moms {
+    @include fontsizeTiny;
+}
+
+.receipt-price {
+    @include fontsizeLarge;
+    font-weight: bold;
+    @include row;
+    align-items: center;
+}
+
+
+    

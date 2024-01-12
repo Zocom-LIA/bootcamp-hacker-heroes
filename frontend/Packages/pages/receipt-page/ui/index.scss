@@ -4,6 +4,7 @@
     padding: $padding;
     background-color: $clay;
     @include column;
+    height: 100%;
     justify-content: space-between;
     font-family:var(--font-family);
 }
@@ -13,8 +14,15 @@
     width: 100%;
     height: auto;
     @include column;
+    margin-top: $margin-huge;
     padding-top: $padding-huge;
     border-radius: $radius-tier-2;
+    gap: $gap-large;
+}
+
+.receipt-items {
+    width: 100%;
+    @include column;
     gap: $gap-sml;
 }
 

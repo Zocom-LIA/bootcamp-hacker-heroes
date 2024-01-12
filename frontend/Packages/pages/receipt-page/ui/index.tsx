@@ -6,7 +6,7 @@ import logo from '../../../shared/logo.png';
 import logoRed from '../../../shared/logo-red.png';
 import { PriceBox } from '@zocom/price-box';
 import { useEffect, useState } from 'react';
-import { CartItem } from '@zocom/cart-item';
+import { CartItem, ItemParent } from '@zocom/cart-item';
 
 type OrderItem = {
     name: string;
@@ -68,17 +68,23 @@ type OrderItem = {
       const productCount = countProducts(orderItems);
   
       return Object.entries(productCount).map(([title, quantity]) => (
-        <CartItem key={title} title={title} quantity={quantity} price={price} />
+        <CartItem key={title} title={title} quantity={quantity} price={price} parentElem={ItemParent.RECEIPT} />
       ));
     };
   
     return (
       <div className='receipt-page'>
+        <Header logo={logo} />
         <main className='receipt-container'>
-          <h1 className='receipt-title'>KVITTO</h1>
-          <p className='order-nr'>#4kjwsdf234k</p>
-          {renderItems()}
-          <PriceBox price={price} />
+          <img className='logo-red' src={logoRed} alt="logoRed" />
+          <section className='receipt-container-header'>
+            <h1 className='receipt-title'>KVITTO</h1>
+            <p className='order-nr'>#4kjwsdf234k</p>
+          </section>
+          <section className='receipt-items'>
+            {renderItems()}
+          </section>
+          <PriceBox price={price} parentElem={ItemParent.RECEIPT} />
         </main>
         <Button size={ButtonSize.STRETCH} onClick={() => navigate('/')}>
           GÖR EN NY BESTÄLLNING

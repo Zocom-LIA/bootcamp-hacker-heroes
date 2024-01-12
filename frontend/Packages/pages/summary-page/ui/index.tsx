@@ -1,6 +1,6 @@
 
 import { PriceBox } from "@zocom/price-box";
-import { CartItem } from "@zocom/cart-item/";
+import { CartItem, ItemParent } from "@zocom/cart-item/";
 import { Header } from "@zocom/header";
 import { Button, ButtonColor, ButtonSize } from '@zocom/button';
 import { useNavigate } from 'react-router-dom'
@@ -39,7 +39,7 @@ const handleDecrement = (item: cartItemType) => {
         <Button color={ButtonColor.DARKGREY} size={ButtonSize.ROUND} onClick={() =>  handleDecrement(cartItems[0])}> - </Button>
       </ul>
       <span className="cart-space"></span>
-        <PriceBox price={totalPrice} />
+        <PriceBox price={totalPrice} parentElem={ItemParent.CART} />
         <Button size={ButtonSize.STRETCH} color={ButtonColor.CLAY} onClick={() => navigate('/eta')}>TAKE MY MONEY!</Button>
 
         

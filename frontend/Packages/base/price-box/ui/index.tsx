@@ -1,19 +1,24 @@
 import './styles.scss';
-import React from 'react';
+import { ItemParent } from '@zocom/cart-item';
+
 
 
 type totalPriceProps = {
-    price: number
+    price: number,
+    parentElem: ItemParent
 
 }
 
-export const PriceBox = ({ price }: totalPriceProps) => {
+export const PriceBox = ({ price, parentElem }: totalPriceProps) => {
     return (
         <div className='container'>
-            <div className="price-box">
-                <h3>Total</h3>
-                <p> inkl 20% moms</p>
-                <h3 className='price'>{price} SEK</h3>
+            <div className='price-box'>
+                <section className='total'>
+                    <h3 className={`${parentElem}-total`}>Total</h3>
+                    <p className={`${parentElem}-moms`}> inkl 20% moms</p>
+                </section>
+                <h3 className={`${parentElem}-price`}>{price} SEK</h3>
+
             </div>
         </div>
     );
